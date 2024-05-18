@@ -117,7 +117,7 @@ if (isset($_POST['login'])) {
                       <button class="btn btn-primary w-100" name="login" type="submit">Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="pages-register.php">Create an account</a></p>
+                      <p class="small mb-0">Forgot your password? <a href="pages-reset-password.php">Click here</a></p>
                     </div>
                   </form>
                   <div>
@@ -147,7 +147,7 @@ if (isset($_POST['login'])) {
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://csht.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://csht.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://csht.com/">CSHT</a>
+                Designed by <a href="home.php">CSHT GUSAU</a>
               </div>
 
             </div>

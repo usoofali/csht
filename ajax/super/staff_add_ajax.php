@@ -118,109 +118,109 @@ if (empty($errors)) {
         $errors['data_exist'] = $lang['data_exist'];
     }
 
-    // // try {
+    try {
 
-    // //   $body = str_replace(
-    // //     array(
-    // //       '[URL]',
-    // //       '[URL_LINK]',
-    // //       '[SITE_NAME]'
-    // //     ),
-    // //     array(
-    // //       $core->site_url,
-    // //       $core->logo,
-    // //       $core->site_name
-    // //     ),
-    // //     $body
-    // //   );
+      $body = str_replace(
+        array(
+          '[URL]',
+          '[URL_LINK]',
+          '[SITE_NAME]'
+        ),
+        array(
+          $core->site_url,
+          $core->logo,
+          $core->site_name
+        ),
+        $body
+      );
     
-    // //  //Create an instance; passing `true` enables exceptions
-    // //   $mail = new PHPMailer(true);
-    // //   //Server settings
-    // //   // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    // //   $mail->isMail();                                            //Send using SMTP
-    // //   $mail->Host       = $settings->smtp_host;                   //Set the SMTP server to send through
-    // //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    // //   $mail->Username   = $settings->info_mail;                     //SMTP username
-    // //   $mail->Password   = $settings->smtp_password;                               //SMTP password
-    // //   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-    // //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+     //Create an instance; passing `true` enables exceptions
+      $mail = new PHPMailer(true);
+      //Server settings
+      // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+      $mail->isMail();                                            //Send using SMTP
+      $mail->Host       = $settings->smtp_host;                   //Set the SMTP server to send through
+      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+      $mail->Username   = $settings->info_mail;                     //SMTP username
+      $mail->Password   = $settings->smtp_password;                               //SMTP password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+      $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
-    // //   // Recipients
-    // //   $mail->setFrom($settings->info_mail, $settings->site_name);
-    // //   $to = '';
-    // //   foreach ($userrows as $user) {  
-    // //       $to .= $user->email . ',';
-    // //   }
-    // //   $to = rtrim($to, ','); 
-    // //   $mail->addAddress($to);
-    // //        //Add a recipient            //Name is optional
-    // //   $mail->addReplyTo($settings->site_email, 'Information');
-    // //   $mail->addCC($settings->site_email);
-    // //   $mail->addBCC($settings->info_mail);
+      // Recipients
+      $mail->setFrom($settings->info_mail, $settings->site_name);
+      $to = '';
+      foreach ($userrows as $user) {  
+          $to .= $user->email . ',';
+      }
+      $to = rtrim($to, ','); 
+      $mail->addAddress($to);
+           //Add a recipient            //Name is optional
+      $mail->addReplyTo($settings->site_email, 'Information');
+      $mail->addCC($settings->site_email);
+      $mail->addBCC($settings->info_mail);
     
-    // //   // //Attachments
-    // //   // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    // //   // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      // //Attachments
+      // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+      // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
     
-    // //   //Content
-    // //   $mail->isHTML(true);                                  //Set email format to HTML
-    // //   $mail->Subject = $subject;
-    // //   $mail->Body    = $body;
-    // //   $mail->SMTPOptions = array(
-    // //     'ssl' => array(
-    // //         'verify_peer' => false,
-    // //         'verify_peer_name' => false,
-    // //         'allow_self_signed' => true
-    // //     )
-    // //   );
-    // //   $mail->send();
+      //Content
+      $mail->isHTML(true);                                  //Set email format to HTML
+      $mail->Subject = $subject;
+      $mail->Body    = $body;
+      $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+      );
+      $mail->send();
      
-    // //   if ($mail) {
-    // //     $messages['message'] =  $count ." Email sent successfully.";
+      if ($mail) {
+        $messages['message'] =  $count ." Email sent successfully.";
         
-    // //   } else {
-    // //     $errors['error'] =  "Failed to send email.";
-    // //   }
-    // // } catch (Exception $e) {
-    // //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    // // }
+      } else {
+        $errors['error'] =  "Failed to send email.";
+      }
+    } catch (Exception $e) {
+      $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 
-    // $dataHistory = array(
-    //   'user_id' =>  $_SESSION['userid'],
-    //   'order_id' =>  $shipment_id,
-    //   'order_track' => $order_track,
-    //   'action' =>  $lang['notification_shipment8'],
-    //   'date_history' =>  cdp_sanitize(date("Y-m-d H:i:s")),
-    // );
+    $dataHistory = array(
+      'user_id' =>  $_SESSION['userid'],
+      'order_id' =>  $shipment_id,
+      'order_track' => $order_track,
+      'action' =>  $lang['notification_shipment8'],
+      'date_history' =>  cdp_sanitize(date("Y-m-d H:i:s")),
+    );
 
-    // //INSERT HISTORY USER
-    // cdp_insertCourierShipmentUserHistory(
-    //     $dataHistory
-    // );
+    //INSERT HISTORY USER
+    cdp_insertCourierShipmentUserHistory(
+        $dataHistory
+    );
 
-    // $dataNotification = array(
-    //     'user_id' =>  $_SESSION['userid'],
-    //     'order_id' =>  $shipment_id,
-    //     'order_track' =>  $order_track,
-    //     'notification_description' => $lang['notification_shipment'],
-    //     'shipping_type' => '1',
-    //     'notification_date' =>  cdp_sanitize(date("Y-m-d H:i:s")),
-    // );
-    // // SAVE NOTIFICATION
-    // cdp_insertNotification(
-    //     $dataNotification
-    // );
+    $dataNotification = array(
+        'user_id' =>  $_SESSION['userid'],
+        'order_id' =>  $shipment_id,
+        'order_track' =>  $order_track,
+        'notification_description' => $lang['notification_shipment'],
+        'shipping_type' => '1',
+        'notification_date' =>  cdp_sanitize(date("Y-m-d H:i:s")),
+    );
+    // SAVE NOTIFICATION
+    cdp_insertNotification(
+        $dataNotification
+    );
 
-    // $notification_id = $db->dbh->lastInsertId();
+    $notification_id = $db->dbh->lastInsertId();
 
-    // $users_employees = cdp_getUsersAdminEmployees();
+    $users_employees = cdp_getUsersAdminEmployees();
 
-    // foreach ($users_employees as $key) {
-    //   cdp_insertNotificationsUsers($notification_id, $key->id);
-    // }
+    foreach ($users_employees as $key) {
+      cdp_insertNotificationsUsers($notification_id, $key->id);
+    }
 
-    // cdp_insertNotificationsUsers($notification_id, intval($_POST['sender_id']));
+    cdp_insertNotificationsUsers($notification_id, intval($_POST['sender_id']));
       
 }
 
