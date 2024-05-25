@@ -654,19 +654,22 @@ function insert_notification($data)
     $db = new Conexion;
     $db->cdp_query('INSERT INTO notification
         (
-            notification_id,
-            description,
-            created_at
+            user_id,
+            acted_id,
+            action_type,
+            description
         )
         VALUES (
-            :notification_id,
-            :description,
-            :created_at
+            :user_id,
+            :acted_id,
+            :action_type,
+            :description
         )');
 
-    $db->bind(':notification_id', $data['notification_id']);
+    $db->bind(':user_id', $data['user_id']);
     $db->bind(':description', $data['description']);
-    $db->bind(':created_at', $data['created_at']);
+    $db->bind(':action_type', $data['action_type']);
+    $db->bind(':acted_id', $data['acted_id']);
     return $db->cdp_execute();
 }
 
@@ -676,23 +679,17 @@ function insert_notification_user($data)
     $db = new Conexion;
     $db->cdp_query('INSERT INTO notification_user
         (
-            notification_user_id,
-            notification_read,
-            notification_status,
+            notification_id,
             branch_id,
             user_id
         )
         VALUES (
-            :notification_user_id,
-            :notification_read,
-            :notification_status,
+            :notification_id,
             :branch_id,
             :user_id
         )');
 
-    $db->bind(':notification_user_id', $data['notification_user_id']);
-    $db->bind(':notification_read', $data['notification_read']);
-    $db->bind(':notification_status', $data['notification_status']);
+    $db->bind(':notification_id', $data['notification_id']);
     $db->bind(':branch_id', $data['branch_id']);
     $db->bind(':user_id', $data['user_id']);
     return $db->cdp_execute();
@@ -1006,6 +1003,7 @@ function insert_attendee($data)
     return $db->cdp_execute();
 }
 
+
 function insert_skills($data)
 {
     $db = new Conexion;
@@ -1248,6 +1246,37 @@ function insert_user($data)
     $db->bind(':branch_id', $data['branch']);
     $db->bind(':address', $data['address']);
     $db->bind(':theme', "style");
+    return $db->cdp_execute();
+}
+
+function insert_user_action_history($datos)
+{
+    $db = new Conexion;
+    $db->cdp_query("
+                INSERT INTO user_action_history 
+                (
+                    user_id,
+                    action_type,
+                    acted_id,
+                    action,
+                    date_history                   
+                    )
+                VALUES
+                    (
+                    :user_id,
+                    :action_type,
+                    :acted_id,
+                    :action,
+                    :date_history
+                    )
+            ");
+
+    $db->bind(':acted_id', $datos["acted_id"]);
+    $db->bind(':action_type', $datos["action_type"]);
+    $db->bind(':user_id', $datos["user_id"]);
+    $db->bind(':action', $datos["action"]);
+    $db->bind(':date_history', $datos["date_history"]);
+
     return $db->cdp_execute();
 }
 
@@ -1709,7 +1738,19 @@ function update_message($data)
     return $db->cdp_execute();
 }
 
-// Functions for other tables follow the same pattern...
+function update_message_status($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE message SET
+            message_status = 1
+        WHERE
+            message_id =:message_id
+        ');
+
+    $db->bind(':message_id', $data['message_id']);
+    return $db->cdp_execute();
+}
+
 function update_notification($data)
 {
     $db = new Conexion;
@@ -1727,20 +1768,17 @@ function update_notification($data)
 function update_notification_user($data)
 {
     $db = new Conexion;
-    $db->cdp_query('UPDATE notification_user SET
-            notification_read = :notification_read,
-            notification_status = :notification_status,
-            branch_id = :branch_id,
-            user_id = :user_id
-        WHERE
-            notification_user_id = :notification_user_id
-        ');
 
-    $db->bind(':notification_read', $data['notification_read']);
-    $db->bind(':notification_status', $data['notification_status']);
-    $db->bind(':branch_id', $data['branch_id']);
+    $db->cdp_query("UPDATE notification_user SET                
+    notification_status ='1'                    
+    WHERE
+    notification_id=:notification_id 
+    and user_id = :user_id  
+    ");
+
     $db->bind(':user_id', $data['user_id']);
-    $db->bind(':notification_user_id', $data['notification_user_id']);
+    $db->bind(':notification_id', $data['notification_id']);
+    
     return $db->cdp_execute();
 }
 
@@ -3088,7 +3126,7 @@ function deleteNotification($query)
 function deleteNotificationUser($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM notification_user WHERE notification_user_id = ". $query;
+    $sql = "DELETE FROM notification_user WHERE notification_id = ". $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;

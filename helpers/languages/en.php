@@ -55,6 +55,8 @@ $lang = array(
 	//staff tables
 	"staff"=>"Staff",
 	"add_staff"=>"Add Staff",
+	"add_staff_action"=>"You added a Staff",
+	"add_staff_notification"=>"A new staff has been added. Please review it.",
 	"view_staff"=>"View Staff",
 	"edit_staff"=>"Edit Staff",
 	"delete_staff"=>"Delete Staff",
@@ -69,6 +71,8 @@ $lang = array(
 
 	"file_size"=>"Invalid file size",
 	"file_type"=>"Invalid file type",
+
+	"view_notification_list"=>"Notification List",
 	
 
 

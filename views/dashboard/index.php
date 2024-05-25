@@ -20,34 +20,9 @@
 				$userrole = "Student";
 				include('dashboard_student.php');
 
-			}else if($_SESSION['userlevel'] == 2){
-				$userrole = "Admin Officer";
-				include('dashboard_admin.php');
-
-			}else if($_SESSION['userlevel'] == 3){
-				$userrole = "Exam Officer";
-				include('dashboard_exam.php');
-
-			}else if($_SESSION['userlevel'] == 4){
-				$userrole = "Hod";
-				include('dashboard_hod.php');
-
-			}else if($_SESSION['userlevel'] == 5){
-				$userrole = "Cashier";
-				include('dashboard_cashier.php');
-
-			}else if($_SESSION['userlevel'] == 6){
-				$userrole = "Registrar";      
-				include('dashboard_registrar.php');
-
-			}else if($_SESSION['userlevel'] == 7){
-				$userrole = "Lecturer";
-				include('dashboard_lecturer.php');
-
-			}else if($_SESSION['userlevel'] == 8){
-				$userrole = "Provost";      
-				include('dashboard_provost.php');
-
+			}else{
+				$userrole = "Staff";
+				include('dashboard_staff.php');
 			}
 			?>
 

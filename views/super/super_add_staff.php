@@ -4,7 +4,7 @@
 <?php 
 include('helpers/querys.php');
 $userRoles = array(
-  9 => "Super",
+  9 => "Super User",
   1 => "Student",
   2 => "Admin Officer",
   3 => "Exam Officer",
@@ -99,7 +99,7 @@ $branches = getAllBranch();
 
                   <div class="col-md-6">
                     <select class="form-control" id="userlevel" name="userlevel" placeholder="User Level">
-                        <option>User Level</option>
+                        <option>User Role</option>
                         <?php foreach ($userRoles as $key => $role) { ?>
                             <option value="<?php echo $key; ?>"><?php echo $role; ?></option>
                         <?php } ?>

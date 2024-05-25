@@ -1,6 +1,7 @@
 <?php
 require_once("../../loader.php");
 require_once("../../helpers/querys.php");
+require_once("../../helpers/queries.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -34,6 +35,10 @@ foreach ($fields as $field => $label) {
     if (empty($_POST[$field])) {
         $errors[$field] = ucfirst($label) . " cannot be empty";
     }
+}
+
+if ($_POST['userlevel'] == "") {
+    $errors['userlevel'] = "Select User Role";
 }
 
 if(!empty($_POST['account_no'])){
@@ -93,14 +98,11 @@ if (empty($errors)) {
         );
     }
 
-    
-
     // Assuming insert_staff is a function to insert staff data
     $insert = insert_user($data);
-    
+    $user_id = '';
 
     if ($insert) {
-
         if(isset($_POST['acct_bank']) and isset($_POST['acct_name']) and isset($_POST['acct_no'])){
             $user_id = getUser("email='".strtolower(trim($_POST['email']))."'")[0]->user_id;
             $data = array(
@@ -112,26 +114,42 @@ if (empty($errors)) {
             $insert = insert_staff($data);
         }
 
-        $messages[] = $lang['data_success'];
+        $messages['data_success'] = $lang['data_success'];
     } else {
         $errors['data_fail'] = $lang['data_fail'];
         $errors['data_exist'] = $lang['data_exist'];
     }
 
     try {
-
-      $body = str_replace(
+        $settings = getSettings("settings_id=1")[0];
+        $staff =  ucfirst(trim($_POST['lname'])) .' '. ucfirst(trim($_POST['fname']));
+        $template = getEmailTemplate("name='welcome-staff'")[0];
+        $body = str_replace(
         array(
           '[URL]',
-          '[URL_LINK]',
+          '[STAFF]',
+          '[IT_SUPPORT_MAIL]',
+          '[PHONE]',
+          '[PROVOST]',
+          '[ABOUT]',
+          '[ADDRESS]',
+          '[CITY]',
+          '[STATE]',
           '[SITE_NAME]'
         ),
         array(
-          $core->site_url,
-          $core->logo,
-          $core->site_name
+            $settings->site_url,
+            $staff,
+            $settings->support_mail,
+            $settings->c_phone,
+            $settings->provost,
+            $settings->about,
+            $settings->c_address,
+            $settings->c_city,
+            $settings->c_state,
+            $settings->site_url
         ),
-        $body
+        $template->body
       );
     
      //Create an instance; passing `true` enables exceptions
@@ -147,25 +165,19 @@ if (empty($errors)) {
       $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
       // Recipients
-      $mail->setFrom($settings->info_mail, $settings->site_name);
-      $to = '';
-      foreach ($userrows as $user) {  
-          $to .= $user->email . ',';
-      }
-      $to = rtrim($to, ','); 
-      $mail->addAddress($to);
-           //Add a recipient            //Name is optional
+      $mail->setFrom($settings->operations_mail, $settings->site_name);
+      $to = strtolower(trim($_POST['email']));
+      $mail->addAddress($to, $staff);
       $mail->addReplyTo($settings->site_email, 'Information');
       $mail->addCC($settings->site_email);
       $mail->addBCC($settings->info_mail);
     
       // //Attachments
-      // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
     
       //Content
       $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = $subject;
+      $mail->Subject = $template->subject;
       $mail->Body    = $body;
       $mail->SMTPOptions = array(
         'ssl' => array(
@@ -177,53 +189,51 @@ if (empty($errors)) {
       $mail->send();
      
       if ($mail) {
-        $messages['message'] =  $count ." Email sent successfully.";
-        
+        $messages['success_message'] =  " Email sent successfully.";
       } else {
-        $errors['error'] =  "Failed to send email.";
+        $messages['fail_message']  =  "Failed to send email.";
       }
     } catch (Exception $e) {
-      $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+      $messages['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
-    $dataHistory = array(
+    $action_history = array(
       'user_id' =>  $_SESSION['userid'],
-      'order_id' =>  $shipment_id,
-      'order_track' => $order_track,
-      'action' =>  $lang['notification_shipment8'],
-      'date_history' =>  cdp_sanitize(date("Y-m-d H:i:s")),
+      'acted_id' =>  $user_id,
+      'action_type' => $lang['add_staff'],
+      'action' =>  $lang['add_staff_action'],
+      'date_history' =>  date("Y-m-d H:i:s"),
     );
 
     //INSERT HISTORY USER
-    cdp_insertCourierShipmentUserHistory(
-        $dataHistory
+    insert_user_action_history(
+        $action_history
     );
 
-    $dataNotification = array(
+    $notification_data = array(
         'user_id' =>  $_SESSION['userid'],
-        'order_id' =>  $shipment_id,
-        'order_track' =>  $order_track,
-        'notification_description' => $lang['notification_shipment'],
-        'shipping_type' => '1',
-        'notification_date' =>  cdp_sanitize(date("Y-m-d H:i:s")),
+        'acted_id' =>   $user_id,
+        'action_type' => $lang['add_staff'],
+        'description' => $lang['add_staff_notification']
     );
     // SAVE NOTIFICATION
-    cdp_insertNotification(
-        $dataNotification
-    );
+    insert_notification($notification_data);
 
     $notification_id = $db->dbh->lastInsertId();
 
-    $users_employees = cdp_getUsersAdminEmployees();
 
-    foreach ($users_employees as $key) {
-      cdp_insertNotificationsUsers($notification_id, $key->id);
+    $staff = getUser("userlevel != 1 and branch_id ='".$_POST['branch']."'");
+
+    foreach ($staff as $key) {
+        $userNotification = array(
+        "notification_id" => $notification_id,
+        "branch_id" => $key->branch_id,
+        "user_id" => $key->user_id);
+        insert_notification_user($userNotification);
     }
-
-    cdp_insertNotificationsUsers($notification_id, intval($_POST['sender_id']));
       
 }
-
 
 if (!empty($errors)) {
     $html = '<ul style="text-align: left;">';
@@ -237,9 +247,14 @@ if (!empty($errors)) {
         'message' => $html
     ]);
 } else {
+    $html = '<ul style="text-align: left;">';
+    foreach ($messages as $msg) {
+        $html .= '<li><i class="icon-double-angle-right"></i>'.$msg.'</li>';
+    }
+    $html .= '</ul>';
     echo json_encode([
         'success' => true,
-        'message' => $lang['data_success'],
+        'message' => $html
     ]);
 }
 

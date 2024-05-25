@@ -28,7 +28,7 @@ $("#add_data").on('submit', function (event) {
                 // Display a success message using SweetAlert
                 Swal.fire({
                     title: 'Success!',
-                    text: data.message, // Assuming your PHP script returns a success message
+                    html: data.message, // Assuming your PHP script returns a success message
                     icon: 'success',
                     confirmButtonText: 'OK',
                     width:'340px'
