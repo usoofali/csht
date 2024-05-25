@@ -1751,6 +1751,19 @@ function update_message_status($data)
     return $db->cdp_execute();
 }
 
+function update_message_read($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE message SET
+            message_read = 1
+        WHERE
+            message_id =:message_id
+        ');
+
+    $db->bind(':message_id', $data['message_id']);
+    return $db->cdp_execute();
+}
+
 function update_notification($data)
 {
     $db = new Conexion;

@@ -73,7 +73,7 @@ $lang = array(
 	"file_type"=>"Invalid file type",
 
 	"view_notification_list"=>"Notification List",
-	
+	"view_message_list"=>"Message List",
 
 
 );

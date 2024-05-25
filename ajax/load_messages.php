@@ -6,7 +6,7 @@ $user = new User;
 $db = new Conexion;
 $userData = $user->cdp_getUserData();
 
-$sWhere .= " and a.recipient ='" . $_SESSION['userid'] . "'";
+$sWhere = " and a.recipient ='" . $_SESSION['userid'] . "'";
 $sql = "
 
 SELECT a.subject,  a.body, a.message_id, a.message_status, a.created_at, b.userlevel, b.fname, b.lname, b.email, b.username, b.avatar 
@@ -52,7 +52,7 @@ if ($rowCount > 0) {
     <li>
         <hr class="dropdown-divider">
     </li>
-<!-- <ul class="list-style-none"> -->
+    
         <?php if ($rowCount > 0): ?>
             <?php foreach ($data as $key): ?>
                 <?php

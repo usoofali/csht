@@ -5,7 +5,7 @@ require_once('../helpers/querys.php');
 $user = new User;
 $db = new Conexion;
 
-$sWhere .= " WHERE b.user_id ='" . $_SESSION['userid'] . "'";
+$sWhere = " WHERE b.user_id ='" . $_SESSION['userid'] . "'";
 $sql = "
 
 SELECT a.user_id as admin_id, a.notification_id,  a.acted_id, a.action_type, a.description, a.created_at, b.notification_read, b.notification_status, c.fname, c.lname 

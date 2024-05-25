@@ -6,7 +6,7 @@ $user = new User;
 $db = new Conexion;
 $userData = $user->cdp_getUserData();
 
-$sWhere .= " and a.user_id ='" . $_SESSION['userid'] . "'";
+$sWhere = " and a.user_id ='" . $_SESSION['userid'] . "'";
 $sql = "
 
 SELECT b.user_id as buser,  a.user_id, b.action_type,  a.notification_user_id, b.description, b.created_at , b.acted_id , a.notification_status, a.notification_read, b.notification_id
