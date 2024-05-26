@@ -20,7 +20,6 @@ $branches = getAllBranch();
 
 <head>
   <?php include('views/inc/topbar-script.php');?>
-  <link href="assets/css/<?php echo $user->theme;?>.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/select2/dist/css/select2.min.css">
 </head>
 

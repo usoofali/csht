@@ -109,4 +109,6 @@ if (count($branches) > 0) { ?>
 </div><!-- End Recent Sales -->
 
 <?php } ?>
-<script src="datajs/branch.js"> </script>
+<script src="datajs/branch.js"> 
+
+</script>

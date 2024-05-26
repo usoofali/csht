@@ -14,7 +14,7 @@ class User
     public $userrole;
     public $theme;
     public $avatar;
-
+    public $branch;
     private $db;
     private $result;
     public $sWhere;
@@ -116,6 +116,7 @@ class User
             $this->userlevel = $_SESSION['userlevel'] = $user->userlevel;
             $this->theme = $_SESSION['theme'] = $user->theme;
             $this->last = $_SESSION['last'] = $user->lastlogin;
+            $this->branch = $_SESSION['branch'] = $user->branch_id;
 
             $this->db->cdp_query('UPDATE user SET  lastlogin=:lastlogin, lastip=:lastip where username=:user');
 

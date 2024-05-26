@@ -74,6 +74,7 @@ $lang = array(
 
 	"view_notification_list"=>"Notification List",
 	"view_message_list"=>"Message List",
+	"search"=>"Search",
 
 
 );

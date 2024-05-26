@@ -1245,7 +1245,7 @@ function insert_user($data)
     $db->bind(':active', $data['active']);
     $db->bind(':branch_id', $data['branch']);
     $db->bind(':address', $data['address']);
-    $db->bind(':theme', "style");
+    $db->bind(':theme', "style.css");
     return $db->cdp_execute();
 }
 
@@ -3013,7 +3013,7 @@ function deleteUser($query)
 function deleteStaff($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM staff WHERE staff_id = ". $query;
+    $sql = "DELETE FROM staff WHERE user_id = ". $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;

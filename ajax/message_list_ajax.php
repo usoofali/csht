@@ -147,7 +147,8 @@ if ($rowCount > 0) { ?>
             title: messageSender,
             html: html,
             icon: 'info',
-            confirmButtonText: 'Ok'
+            confirmButtonText: 'Ok',
+            width: 440
         }).then((result) => {
             if (result.isConfirmed) {
                 // Send AJAX request
