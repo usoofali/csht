@@ -1,7 +1,7 @@
 <?php
 require_once("../../loader.php");
 require_once("../../helpers/querys.php");
-require_once("../../helpers/queries.php");
+// require_once("../../helpers/queries.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,6 +16,18 @@ $db = new Conexion;
 $errors = array();
 $messages = array();
 
+$userRoles = array(
+    9 => "Super User",
+    1 => "Student",
+    2 => "Admin Officer",
+    3 => "Exam Officer",
+    4 => "Hod",
+    5 => "Cashier",
+    6 => "Registrar",
+    7 => "Lecturer",
+    8 => "Provost"
+  );
+
 $fields = array(
     'fname' => 'First Name',
     'lname' => 'Last Name',
@@ -28,14 +40,39 @@ $fields = array(
     'city' => 'City',
     'address' => 'Address',
     'userlevel' => 'User Level',
-    'branch' => 'Branch'
-);
+    'branch' => 'Branch',
+    'account_number' => 'Account Number',
+    'account_name' => 'Account Name',
+    'account_bank' => 'Bank'
+  );
 
 foreach ($fields as $field => $label) {
     if (empty($_POST[$field])) {
         $errors[$field] = ucfirst($label) . " cannot be empty";
+    } else {
+        // Additional validation for specific fields
+        $value = trim($_POST[$field]);
+        switch ($field) {
+            case 'email':
+                if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                    $errors[$field] = "Invalid email format";
+                }
+                break;
+            case 'phone':
+                if (!preg_match('/^\+?[0-9]{11,15}$/', $value)) {
+                    $errors[$field] = "Invalid phone number";
+                }
+                break;
+            case 'password':
+                if (strlen($value) < 6) {
+                    $errors[$field] = "Password must be at least 6 characters long";
+                }
+                break;
+            // Add more specific validations as needed
+        }
     }
 }
+
 
 if ($_POST['userlevel'] == "") {
     $errors['userlevel'] = "Select User Role";
@@ -103,18 +140,55 @@ if (empty($errors)) {
     $user_id = '';
 
     if ($insert) {
-        if(isset($_POST['acct_bank']) and isset($_POST['acct_name']) and isset($_POST['acct_no'])){
-            $user_id = getUser("email='".strtolower(trim($_POST['email']))."'")[0]->user_id;
+        $user_id = getUser("email='".strtolower(trim($_POST['email']))."'")[0]->user_id;
+        if(isset($_POST['account_bank']) and isset($_POST['account_name']) and isset($_POST['account_number'])){
             $data = array(
-                'acct_bank' => trim($_POST['acct_bank']),
-                'acct_name' => strtoupper(trim($_POST['acct_name'])),
-                'acct_no' => trim($_POST['acct_no']),
-                'user_id' => $user_id
+                'account_bank' => trim($_POST['account_bank']),
+                'account_name' => strtoupper(trim($_POST['account_name'])),
+                'account_number' => trim($_POST['account_number']),
+                'user_id' => $user_id,
+                'designation' => $userRoles[intval($_POST['userlevel'])]
             );
             $insert = insert_staff($data);
         }
 
+        $action_history = array(
+            'user_id' =>  $_SESSION['userid'],
+            'acted_id' =>  $user_id,
+            'action_type' => $lang['add_staff'],
+            'action' =>  $lang['add_staff_action'],
+            'date_history' =>  date("Y-m-d H:i:s"),
+          );
+      
+          //INSERT HISTORY USER
+          insert_user_action_history(
+              $action_history
+          );
+      
+          $notification_data = array(
+              'user_id' =>  $_SESSION['userid'],
+              'acted_id' =>   $user_id,
+              'action_type' => $lang['add_staff'],
+              'description' => $lang['add_staff_notification']
+          );
+          // SAVE NOTIFICATION
+          insert_notification($notification_data);
+      
+          $notification_id = $db->dbh->lastInsertId();
+      
+      
+          $staff = getUser("userlevel != 1 and branch_id ='".$_POST['branch']."'");
+      
+          foreach ($staff as $key) {
+              $userNotification = array(
+              "notification_id" => $notification_id,
+              "branch_id" => $key->branch_id,
+              "user_id" => $key->user_id);
+              insert_notification_user($userNotification);
+          }
+
         $messages['data_success'] = $lang['data_success'];
+        
     } else {
         $errors['data_fail'] = $lang['data_fail'];
         $errors['data_exist'] = $lang['data_exist'];
@@ -198,40 +272,7 @@ if (empty($errors)) {
     //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
-    $action_history = array(
-      'user_id' =>  $_SESSION['userid'],
-      'acted_id' =>  $user_id,
-      'action_type' => $lang['add_staff'],
-      'action' =>  $lang['add_staff_action'],
-      'date_history' =>  date("Y-m-d H:i:s"),
-    );
-
-    //INSERT HISTORY USER
-    insert_user_action_history(
-        $action_history
-    );
-
-    $notification_data = array(
-        'user_id' =>  $_SESSION['userid'],
-        'acted_id' =>   $user_id,
-        'action_type' => $lang['add_staff'],
-        'description' => $lang['add_staff_notification']
-    );
-    // SAVE NOTIFICATION
-    insert_notification($notification_data);
-
-    $notification_id = $db->dbh->lastInsertId();
-
-
-    $staff = getUser("userlevel != 1 and branch_id ='".$_POST['branch']."'");
-
-    foreach ($staff as $key) {
-        $userNotification = array(
-        "notification_id" => $notification_id,
-        "branch_id" => $key->branch_id,
-        "user_id" => $key->user_id);
-        insert_notification_user($userNotification);
-    }
+    
       
 }
 

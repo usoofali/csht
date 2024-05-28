@@ -1,71 +1,78 @@
+"use strict";
+
 $("#add_data").on('submit', function (event) {
-
+    
     var formData = new FormData(this);
-
-    $.ajax({
-        type: "POST",
-        processData: false, 
-        contentType: false,
-        cache: false,
-        url: "ajax/super/staff_add_ajax.php",
-        data: formData,
-        beforeSend: function (objeto) {
-            // Display a loading message using SweetAlert before sending the AJAX request
-            Swal.fire({
-                title: 'Please wait...',
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                willOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-        },
-        success: function (data) {
-            data = JSON.parse(data);
-            // Close the SweetAlert loading animation
-            Swal.close();
-            if(data.success){
-                // Display a success message using SweetAlert
+    try {
+        $.ajax({
+            type: "POST",
+            processData: false, 
+            contentType: false,
+            cache: false,
+            url: "ajax/super/staff_add_ajax.php",
+            data: formData,
+            beforeSend: function (objeto) {
+                // Display a loading message using SweetAlert before sending the AJAX request
                 Swal.fire({
-                    title: 'Success!',
-                    html: data.message, // Assuming your PHP script returns a success message
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                    width:'340px'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // If the user clicks "OK", redirect or perform any other action
-                        // Example: window.location.href = 'your_redirect_url';
-                        window.location.reload();
-                        
+                    title: 'Please wait...',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    willOpen: () => {
+                        Swal.showLoading();
                     }
                 });
-                // Scroll to the top of the page
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 600);
-            }else{
+            },
+            success: function (data) {
+                data = JSON.parse(data);
+                // Close the SweetAlert loading animation
+                Swal.close();
+                if(data.success){
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        title: 'Success!',
+                        html: data.message, // Assuming your PHP script returns a success message
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        width:'340px'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // If the user clicks "OK", redirect or perform any other action
+                            // Example: window.location.href = 'your_redirect_url';
+                            window.location.reload();
+                            
+                        }
+                    });
+                    // Scroll to the top of the page
+                    $('html, body').animate({
+                        scrollTop: 0
+                    }, 600);
+                }else{
+                    Swal.fire({
+                        title: 'Error!',
+                        html: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        width:'340px'
+                    });
+                }
+                
+            },
+            error: function(xhr, status, error) {
+                // Handle errors using SweetAlert if necessary
                 Swal.fire({
                     title: 'Error!',
-                    html: data.message,
+                    text: 'An error occurred while processing your request.',
                     icon: 'error',
                     confirmButtonText: 'OK',
                     width:'340px'
                 });
             }
-            
-        },
-        error: function(xhr, status, error) {
-            // Handle errors using SweetAlert if necessary
-            Swal.fire({
-                title: 'Error!',
-                text: 'An error occurred while processing your request.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-                width:'340px'
-            });
-        }
-    });
+        });
+    } catch (error) {
+        console.log(error);
+    }
+        
+
     event.preventDefault(); 
 });
 
@@ -272,27 +279,28 @@ function validateFileSize() {
     }
 }
 
-$(document).ready(function() {
-    $("#acct_bank").select2({
-            theme:"classic",
-            ajax: {
-                url: "ajax/select2_bank.php",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        q: params.term // search term
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
+
+
+$("#account_bank").select2({
+        theme:"classic",
+        ajax: {
+            url: "ajax/select2_bank.php",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term // search term
+                };
             },
-            minimumInputLength: 2,
-            placeholder: "Search Bank",
-            allowClear: true
-    });
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 2,
+        placeholder: "Search Bank",
+        allowClear: true
 });
+

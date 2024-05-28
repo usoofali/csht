@@ -20,7 +20,10 @@ $branches = getAllBranch();
 
 <head>
   <?php include('views/inc/topbar-script.php');?>
+  <link href="assets/sweetalert/sweetalert2.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/select2/dist/css/select2.min.css">
+  <?php $user = new User;?>
+  <link type="text/css" href="assets/css/<?php echo $user->theme;?>" rel="stylesheet">
 </head>
 
 <body>
@@ -64,7 +67,7 @@ $branches = getAllBranch();
                   </div>
                   
                   <div class="col-md-6">
-                      <input type="file" class="form-control" onchange="validateFileSize();" id="avatar" name="avatar" placeholder="Avatar">
+                      <input type="file" class="form-control" onchange="validateFileSize();" id="avatar" accept="image/*" name="avatar" placeholder="Avatar">
                   </div>
                   
                   <div class="col-md-6">
@@ -118,14 +121,14 @@ $branches = getAllBranch();
                   </div>
                   <h5 class="card-title"><?php echo $lang['bank_details']; ?></h5>
                   <div class="col-md-12">
-                      <select class="select2 form-control custom-select" style="height: 150%" id="acct_bank" name="acct_bank" placeholder="Search Bank"></select>
+                      <select class="select2 form-control custom-select" style="height: 100%" id="account_bank" name="account_bank" placeholder="Search Bank"></select>
                   </div>
                   
                   <div class="col-md-6">
-                      <input type="text" class="form-control" id="acct_name" name="acct_name" placeholder="Account Name">
+                      <input type="text" class="form-control" id="account_name" name="account_name" placeholder="Account Name">
                   </div>
                   <div class="col-md-6">
-                      <input type="text" class="form-control" id="acct_no" name="acct_no" placeholder="Account Number">
+                      <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Account Number">
                   </div>
                   <div class="text-end">
                       <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>

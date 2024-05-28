@@ -64,6 +64,9 @@ if ($rowCount > 0) {
                     case 'Add Staff':
                         $href = 'staff_view.php?id=' . $key->acted_id . '&notification_id=' . $key->notification_id;
                         break;
+                    case 'Update Staff':
+                        $href = 'staff_view.php?id=' . $key->acted_id . '&notification_id=' . $key->notification_id;
+                        break;
                     case 'Add Student':
                         $href = 'student_view.php?id=' . $key->acted_id . '&notification_id=' . $key->notification_id;
                         break;

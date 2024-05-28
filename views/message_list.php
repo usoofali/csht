@@ -4,6 +4,8 @@
 <head>
   <?php include('views/inc/topbar-script.php');?>
   <link href="assets/sweetalert/sweetalert2.min.css" rel="stylesheet">
+  <?php $user = new User;?>
+  <link type="text/css" href="assets/css/<?php echo $user->theme;?>" rel="stylesheet">
 </head>
 
 <body>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <?php include('views/inc/topbar-script.php');?>
+  <?php $user = new User;?>
+  <link type="text/css" href="assets/css/<?php echo $user->theme;?>" rel="stylesheet">
+  
 </head>
 
 <body>

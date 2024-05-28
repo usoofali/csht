@@ -53,6 +53,9 @@ if ($rowCount > 0) { ?>
                     case 'Add Staff':
                         $href = 'staff_view.php?id=' . $notification->acted_id . '&notification_id=' . $notification->notification_id;
                         break;
+                    case 'Update Staff':
+                        $href = 'staff_view.php?id=' . $notification->acted_id . '&notification_id=' . $notification->notification_id;
+                        break;
                     case 'Add Student':
                         $href = 'student_view.php?id=' . $notification->acted_id . '&notification_id=' . $notification->notification_id;
                         break;
@@ -65,7 +68,7 @@ if ($rowCount > 0) { ?>
                         <td><?php echo $notification->created_at; ?></td>
                         <td><a href="<?php echo $href;?>" class="text-primary"><?php echo $notification->description; ?></a></td>
                         <td><?php echo $notification->fname." ".$notification->lname; ?></td>
-                        <td><span class="<?php echo($notification->status==0) ? "badge bg-info" : "badge bg-secondary"; ?>"><?php echo($notification->status==0) ? "New" : "Read"; ?></span></td>
+                        <td><span class="<?php echo ($notification->notification_read == 0) ? "badge bg-info" : "badge bg-success"; ?>"><?php echo ($notification->notification_read == 0) ? "New" : "Read"; ?></span></td>
                         <td>
                             <div class="">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>

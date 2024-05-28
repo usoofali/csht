@@ -1030,22 +1030,25 @@ function insert_staff($data)
     $db = new Conexion;
     $db->cdp_query('INSERT INTO staff
         (
-            acct_no,
-            acct_name,
-            acct_bank,
-            user_id
+            account_number,
+            account_name,
+            account_bank,
+            user_id,
+            designation
         )
         VALUES (
-            :acct_no,
-            :acct_name,
-            :acct_bank,
-            :user_id
+            :account_number,
+            :account_name,
+            :account_bank,
+            :user_id,
+            :designation
         )');
 
-    $db->bind(':acct_no', $data['acct_no']);
-    $db->bind(':acct_name', $data['acct_name']);
-    $db->bind(':acct_bank', $data['acct_bank']);
+    $db->bind(':account_number', $data['account_number']);
+    $db->bind(':account_name', $data['account_name']);
+    $db->bind(':account_bank', $data['account_bank']);
     $db->bind(':user_id', $data['user_id']);
+    $db->bind(':designation', $data['designation']);
     return $db->cdp_execute();
 }
 
@@ -2013,21 +2016,38 @@ function update_skills($data)
 // Functions for other tables follow the same pattern...
 function update_staff($data)
 {
+    
     $db = new Conexion;
     $db->cdp_query('UPDATE staff SET
-            acct_no = :acct_no,
-            acct_name = :acct_name,
-            acct_bank = :acct_bank,
-            user_id = :user_id
+            about = :about,
+            company = :company,
+            job = :job,
+            twitter = :twitter,
+            facebook = :facebook,
+            instagram = :instagram,
+            linkedin = :linkedin,
+            account_number = :account_number,
+            account_name = :account_name,
+            account_bank = :account_bank,
+            designation = :designation
+            
         WHERE
-            staff_id = :staff_id
+            user_id = :user_id
         ');
 
-    $db->bind(':acct_no', $data['acct_no']);
-    $db->bind(':acct_name', $data['acct_name']);
-    $db->bind(':acct_bank', $data['acct_bank']);
+    $db->bind(':account_number', $data['account_number']);
+    $db->bind(':account_name', $data['account_name']);
+    $db->bind(':account_bank', $data['account_bank']);
+    $db->bind(':about', $data['about']);
+    $db->bind(':company', $data['company']);
+    $db->bind(':job', $data['job']);
+    $db->bind(':twitter', $data['twitter']);
+    $db->bind(':facebook', $data['facebook']);
+    $db->bind(':instagram', $data['instagram']);
+    $db->bind(':linkedin', $data['linkedin']);
+    $db->bind(':designation', $data['designation']);
     $db->bind(':user_id', $data['user_id']);
-    $db->bind(':staff_id', $data['staff_id']);
+
     return $db->cdp_execute();
 }
 
@@ -2140,50 +2160,59 @@ function update_timetable($data)
 // Functions for other tables follow the same pattern...
 function update_user($data)
 {
+
+    $avatar = "";
+    if(isset($data['avatar'])){
+        $avatar = "avatar = :avatar,";
+    }
+
     $db = new Conexion;
     $db->cdp_query('UPDATE user SET
-            email = :email,
-            password = :password,
             fname = :fname,
             lname = :lname,
-            username = :username,
-            userlevel = :userlevel,
-            avatar = :avatar,
-            ip = :ip,
-            created = :created,
-            lastlogin = :lastlogin,
-            lastip = :lastip,
-            notes = :notes,
+            '.$avatar.'
             phone = :phone,
             gender = :gender,
-            newsletter = :newsletter,
-            active = :active,
-            userrole = :userrole,
-            branch_id = :branch_id,
-            address_id = :address_id
+            address = :address
         WHERE
             user_id = :user_id
         ');
 
-    $db->bind(':email', $data['email']);
-    $db->bind(':password', $data['password']);
     $db->bind(':fname', $data['fname']);
     $db->bind(':lname', $data['lname']);
-    $db->bind(':username', $data['username']);
-    $db->bind(':userlevel', $data['userlevel']);
-    $db->bind(':avatar', $data['avatar']);
-    $db->bind(':ip', $data['ip']);
-    $db->bind(':created', $data['created']);
-    $db->bind(':lastlogin', $data['lastlogin']);
-    $db->bind(':lastip', $data['lastip']);
-    $db->bind(':notes', $data['notes']);
+    if(isset($data['avatar'])){
+        $db->bind(':avatar', $data['avatar']);
+    }
     $db->bind(':phone', $data['phone']);
     $db->bind(':gender', $data['gender']);
-    $db->bind(':newsletter', $data['newsletter']);
-    $db->bind(':active', $data['active']);
-    $db->bind(':userrole', $data['userrole']);
-    $db->bind(':branch_id', $data['branch_id']);
-    $db->bind(':address_id', $data['address_id']);
+    $db->bind(':address', $data['address']);
+    $db->bind(':user_id', $data['user_id']);
+    return $db->cdp_execute();
+}
+function update_password($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE user SET
+            password = :password
+        WHERE
+            user_id = :user_id
+        ');
+
+    $db->bind(':password', $data['password']);
+    $db->bind(':user_id', $data['user_id']);
+    return $db->cdp_execute();
+}
+
+function update_theme($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE user SET
+            theme = :theme
+        WHERE
+            user_id = :user_id
+        ');
+
+    $db->bind(':theme', $data['theme']);
     $db->bind(':user_id', $data['user_id']);
     return $db->cdp_execute();
 }
@@ -2216,6 +2245,16 @@ function getAny($query)
     $db->cdp_query($query);
     $db->cdp_execute();
     $row = $db->cdp_registros();
+
+    return $row;
+}
+
+function getAnyOne($query)
+{
+    $db = new Conexion;
+    $db->cdp_query($query);
+    $db->cdp_execute();
+    $row = $db->cdp_registro();
 
     return $row;
 }

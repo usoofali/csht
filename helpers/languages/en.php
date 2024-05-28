@@ -55,8 +55,11 @@ $lang = array(
 	//staff tables
 	"staff"=>"Staff",
 	"add_staff"=>"Add Staff",
+	"update_staff"=>"Update Staff",
 	"add_staff_action"=>"You added a Staff",
+	"update_staff_action"=>"A Staff has been updated",
 	"add_staff_notification"=>"A new staff has been added. Please review it.",
+	"update_staff_notification"=>"A staff updated. Please review it.",
 	"view_staff"=>"View Staff",
 	"edit_staff"=>"Edit Staff",
 	"delete_staff"=>"Delete Staff",
