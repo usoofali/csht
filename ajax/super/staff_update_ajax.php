@@ -55,7 +55,7 @@ foreach ($fields as $field => $label) {
 if (empty($errors)) {
 
     if (!empty($_FILES['avatar']['name'])) {
-
+        error_log("Avatar added");
         $target_dir = "../../uploads/images/";
         $image_name = time() . "_" . basename($_FILES["avatar"]["name"]);
         $target_file = $target_dir . $image_name;
@@ -89,6 +89,7 @@ if (empty($errors)) {
             'address' => $_POST['address'].', '.$_POST['city'].', '.$_POST['state']. ' State.'
         );
     }else{
+        error_log("Avatar not added");
         $data = array(
             'fname' => ucfirst(trim($_POST['fname'])),
             'lname' => ucfirst(trim($_POST['lname'])),

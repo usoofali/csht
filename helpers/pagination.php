@@ -6,9 +6,9 @@
 function cdp_paginate($page, $total_pages, $pageVisible, $lang)
 {
 
-    $prevlabel = $lang['global-buttons-5'];
-    $nextlabel = $lang['global-buttons-4'];
-    $out = '<nav>';
+    $prevlabel = $lang['previous'];
+    $nextlabel = $lang['next'];
+    $out = '<nav class="align-right">';
     $out .= '<ul class="pagination  pagination-sm  pull-right">';
 
     // previous label

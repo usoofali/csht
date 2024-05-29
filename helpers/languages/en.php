@@ -79,5 +79,8 @@ $lang = array(
 	"view_message_list"=>"Message List",
 	"search"=>"Search",
 
+	"next" => "Next",
+	"previous" => "Previous",
+
 
 );
