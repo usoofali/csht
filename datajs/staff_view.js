@@ -1,43 +1,28 @@
 "use strict";
 
-function cdp_load(page) {
-	var search = $("#search").val();
-	var parametros = { "page": page, 'search': search };
-	$.ajax({
-		url: './ajax/super/staff_view_ajax.php',
-		data: parametros,
-		beforeSend: function (objeto) {
-		},
-		success: function (data) {
-			$(".outer_div").html(data).fadeIn('slow');
-		}
-	})
-}
-
-
 document.getElementById('uploadBtn').addEventListener('click', function(event) {
-	event.preventDefault();
-	document.getElementById('avatar').click();
-  });
+    event.preventDefault();
+    document.getElementById('avatar').click();
+});
 
-  document.getElementById('avatar').addEventListener('change', function() {
-	const file = this.files[0];
-	if (file) {
-	  const reader = new FileReader();
-	  reader.onload = function(e) {
-		document.getElementById('profile_img').src = e.target.result;
-	  }
-	  reader.readAsDataURL(file);
-	}
-  });
-  document.getElementById('avatar').value;
-  document.getElementById('removeBtn').addEventListener('click', function(event) {
-	event.preventDefault();
-	document.getElementById('avatar').value = '';
-	document.getElementById('profile_img').src = '';
-  });
+document.getElementById('avatar').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+        document.getElementById('profile_img').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
 
-  $("#save_changes").on('submit', function (event) {
+document.getElementById('removeBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('avatar').value = '';
+    document.getElementById('profile_img').src = '';
+});
+
+$("#save_changes").on('submit', function (event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
     var parametros = $(this).serialize(); // Serialize form data
@@ -238,27 +223,66 @@ $("#change_password").on('submit', function (event) {
     });
 });
 
-$(document).ready(function() {
-    $("#account_bank").select2({
-            theme:"classic",
-            ajax: {
-                url: "ajax/select2_bank.php",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        q: params.term // search term
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
+
+$("#account_bank").select2({
+        theme:"classic",
+        ajax: {
+            url: "ajax/select2_bank.php",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term // search term
+                };
             },
-            minimumInputLength: 2,
-            placeholder: "Search Bank",
-            allowClear: true
-    });
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 2,
+        placeholder: "Search Bank",
+        allowClear: true
 });
+
+
+function validateFileSize() {
+    // Get the file input element
+    var input = document.getElementById('avatar');
+
+    // Check if any file is selected
+    if (input.files && input.files[0]) {
+        var file = input.files[0];
+        var fileSizeInMB = file.size / (1024 * 1024); // Convert bytes to MB
+        
+        if (!file.type.startsWith('image/')) {
+            // File is not an image, show error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Only image files are accepted.',
+                width:340
+            });
+            // Reset the file input field to clear the selected file
+            input.value = '';
+            return;
+        }
+        // Check if file size is less than 1MB
+        if (fileSizeInMB <= 1) {
+
+        } else {
+            // File size is too large, show error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'File size is too large. Please upload a file less than 1MB.',
+                width:340
+            });
+            // Reset the file input field to clear the selected file
+            input.value = '';
+        }
+    }
+}
+

@@ -7,13 +7,13 @@ $errors = array();
 
 if (empty($_POST['id']))
   $errors['id'] =  $lang['id_error'];
-if (empty($errors)) {
 
+if (empty($errors)) {
   $data = array(
-    'id' => $_POST['id']
+    'message_id' => $_POST['id']
   );
 
-  $update = update_message_read($data['id']);
+  $update = update_message_read($data);
 
   if ($update) {
     $messages[] = $lang['data_update_success'];

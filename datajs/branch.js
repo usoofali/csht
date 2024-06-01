@@ -135,7 +135,8 @@ $("#edit_data").on('submit', function (event) {
 
 $(document).ready(function() {
     // Handle delete branch click event
-    $(".delete-branch").click(function(event) {
+    // $(".delete-branch").click(
+    $(document).on("click", ".delete-branch", function(event) {
         event.preventDefault(); // Prevent default link behavior
 
         // Get the branch ID from data attribute
@@ -219,3 +220,11 @@ $(document).ready(function() {
 }
 
 );
+
+new DataTable('#branch', {
+    ajax: {
+        url: "./ajax/super/branch_view_ajax.php",
+        type: "POST",
+        dataSrc: "data"
+      }
+});

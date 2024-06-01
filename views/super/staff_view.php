@@ -6,26 +6,9 @@ $core = new Core;
 $db = new Conexion;
 
 
-if (isset($_GET['notification_id'])) {
-  $db = new Conexion;
-
-  $db->cdp_query("UPDATE notification_user SET                
-    notification_read ='1'                    
-  WHERE
-    notification_id=:notification_id 
-  and user_id = :user_id  
-  ");
-
-  $db->bind(':user_id', $_GET['id']);
-  $db->bind(':notification_id', $_GET['notification_id']);
-  
-  $db->cdp_execute();
-}
-
-
 if (isset($_GET['id'])) {
   $sql = "
-     SELECT * FROM user
+  SELECT * FROM user
   JOIN staff ON user.user_id = staff.user_id 
   WHERE user.user_id='".$_GET['id']."' ORDER BY staff_id ASC";
 
@@ -35,7 +18,25 @@ if (isset($_GET['id'])) {
   $themes = $user->getFileNamesIn("assets/css");
 }
 
+if (isset($_GET['notification_id'])) {
+  $db = new Conexion;
+
+  $db->cdp_query("UPDATE notification_user SET                
+    notification_read = 1                    
+  WHERE
+    notification_id =:notification_id 
+  and user_id = :user_id  
+  ");
+
+  $db->bind(':user_id', $user->uid);
+  $db->bind(':notification_id', $_GET['notification_id']);
+  $db->cdp_execute();
+
+}
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -170,7 +171,7 @@ if (isset($_GET['id'])) {
                   <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                   <div class="col-md-8 col-lg-9">
                     <img src="<?php echo $staff->avatar;?>" id="profile_img" alt="profile_img">
-                    <input type="file" name="avatar" id="avatar" accept="image/*" hidden>
+                    <input type="file" onchange="validateFileSize();" name="avatar" id="avatar" accept="image/*" hidden>
                     <div class="pt-2">
                       <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image" id="uploadBtn"><i class="bi bi-upload"></i></a>
                       <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image" id="removeBtn"><i class="bi bi-trash"></i></a>

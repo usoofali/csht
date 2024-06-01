@@ -28,7 +28,27 @@
 
     <section class="section dashboard">
       <div class="row">
-        <div class="outer_div"></div>
+        <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                    <h5 class="card-title">All <span>| Messages</span></h5>
+
+                    <table id='message' class="display responsive nowrap" width="100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">From</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                  </table>
+
+              </div>
+            </div>
+          </div>
       </div>
     </section>
 

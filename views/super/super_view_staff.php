@@ -7,7 +7,7 @@
   <link type="text/css" href="assets/css/<?php echo $user->theme;?>" rel="stylesheet">
 </head>
 
-<body onload="cdp_load(1);">
+<body>
   <!-- ======= Header ======= -->
   <?php include('views/inc/topbar.php');?>
 
@@ -31,18 +31,21 @@
           <div class="card recent-sales overflow-auto">
               <div class="card-body">
                   <h5 class="card-title">All <span>| Staff</span></h5>
-                  <div class="row mb-3">
-                      <div class=" col-sm-12 col-md-4 mb-2">
-                          <div class="input-group">
-                              <input type="text" name="search" id="search" class="form-control input-sm float-right" placeholder="<?php echo $lang['search'] ?>" onkeyup="cdp_load(1);">
-                              <div class="input-group-append input-sm">
-                                  <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="outer_div"></div>
-
+                  <table id='staffs' class="display responsive nowrap" width="100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                  </table>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
     
@@ -54,7 +57,6 @@
 <?php include('views/inc/footer-script.php');?> 
 <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
-<script src="datajs/staff_view.js"></script>
-
+<script src="datajs/staff_list_view.js"></script>
 </body>
 </html>

@@ -23,8 +23,9 @@ function cdp_load(page) {
             });
 		},
 		success: function (data) {
-			$(".outer_div").html(data).fadeIn('slow');
 			Swal.close();
+			$(".outer_div").html(data).fadeIn('slow');
+			
 		}
 	})
 }

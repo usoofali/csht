@@ -25,10 +25,28 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
     <section class="section dashboard">
-      <div class="row">
-        <div class="outer_div"></div>
+      <div>
+        <div class="col-12">
+          <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                  <h5 class="card-title">All <span>| Branches</span></h5>
+                  <table id='branch' class="display responsive nowrap" width="100%">
+                  <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Students</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -41,6 +59,7 @@
 <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
 <script src="datajs/branch_view.js"></script>
+<script src="datajs/branch.js"></script>
 
 </body>
 

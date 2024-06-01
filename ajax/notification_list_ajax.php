@@ -28,25 +28,8 @@ $notifications = $db->cdp_registros();
 $rowCount = $db->cdp_rowCount();
 
 
-if ($rowCount > 0) { ?>
-
-<div class="col-12">
-    <div class="card recent-sales overflow-auto">
-        <div class="card-body">
-            <h5 class="card-title">All <span>| Notifications</span></h5>
-
-            <table class="table table-borderless datatable">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Notification</th>
-                    <th scope="col">Adminsitrator</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
+if ($rowCount > 0) { 
+                $dataArray = array();
                 foreach ($notifications as $notification) {
                     $href = '';
                     switch ($notification->action_type) {
@@ -63,88 +46,39 @@ if ($rowCount > 0) { ?>
                         $href = 'staff_view.php?id=' . $notification->acted_id . '&notification_id=' . $notification->notification_id;
                         break;
                     }
-                    ?>
-                    <tr>
-                        <td><?php echo $notification->created_at; ?></td>
-                        <td><a href="<?php echo $href;?>" class="text-primary"><?php echo $notification->description; ?></a></td>
-                        <td><?php echo $notification->fname." ".$notification->lname; ?></td>
-                        <td><span class="<?php echo ($notification->notification_read == 0) ? "badge bg-info" : "badge bg-success"; ?>"><?php echo ($notification->notification_read == 0) ? "New" : "Read"; ?></span></td>
-                        <td>
-                            <div class="">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Actions</h6>
-                                    </li>
+                    $class = ($branch->status==1) ? "badge bg-warning" : "badge bg-success";
+                    $status = ($notification->notification_read == 0) ? "New" : "Read";
+                    
+                    $action = '<div class=""><a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                        <h6>Actions</h6>
+                        </li>';
+                    $action .= '<li><a class="dropdown-item" href="'.$href.'">View</a></li>
+                        <li><a class="dropdown-item delete-notification" href="#" data-notification-id="'.$notification->notification_id.'">Delete</a></li>
+                        </ul>
+                        </div>';
 
-                                <li><a class="dropdown-item" href="<?php echo $href;?>">View</a></li>
-                                <li><a class="dropdown-item delete-notification" href="#" data-notification-id="<?php echo $notification->notification_id; ?>">Delete</a></li>
+                    $dataArray[] = array(
+                        $notification->created_at,
+                        '<a href="'.$href.'" class="text-primary">'.$notification->description.'</a>',
+                        $notification->fname." ".$notification->lname,
+                        '<span class="'.$class.'">'.$status.'</span>',
+                        $action
 
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-            </table>
-
-        </div>
-    </div>
-</div><!-- End Recent Sales -->
-
-<?php } ?>
-
-<script>
-    $(document).ready(function() {
-    // Handle delete notification click event
-    $(".delete-notification").click(function(event) {
-        event.preventDefault(); // Prevent default link behavior
-
-        // Get the notification ID from data attribute
-        var notificationId = $(this).data("notification-id");
-
-        // Show SweetAlert2 confirmation dialog
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            width:340,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Send AJAX request
-                $.ajax({
-                    type: "POST",
-                    url: "ajax/delete_notification.php",
-                    data: { id: notificationId },
-                    success: function(data) {
-                        // Handle success response
-                        Swal.fire(
-                            'Deleted!',
-                            'Your notification has been deleted.',
-                            'success'
-                        );
-                        // Optionally, you can reload the page or update the UI
-                        window.location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error response
-                        Swal.fire(
-                            'Error!',
-                            'An error occurred while deleting the notification.',
-                            'error'
-                        );
-                        window.location.reload();
-                    }
-                });
-            }
-        });
-    });
+                    );
+                }
+                $resultObject = array(
+                    "data" => $dataArray
+                );
+            // Convert the result to JSON format
+                $resultJSON = json_encode($resultObject);
+                // Output the JSON
+                echo $resultJSON;
+            
 }
 
-);
+          
 
-</script>
+
+

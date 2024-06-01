@@ -1,26 +1,59 @@
 "use strict";
 
-$(function () {
-    cdp_load(1);
-});
 
-function cdp_load(page) {
-	$.ajax({
-		url: 'ajax/notification_list_ajax.php',
-		beforeSend: function (objeto) {
-            Swal.fire({
-                title: 'Please wait...',
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                willOpen: () => {
-                    Swal.showLoading();
+$(document).on("click", ".delete-notification", function(event) {
+    event.preventDefault(); // Prevent default link behavior
+
+    // Get the notification ID from data attribute
+    var notificationId = $(this).data("notification-id");
+
+    // Show SweetAlert2 confirmation dialog
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        width:340,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Send AJAX request
+            $.ajax({
+                type: "POST",
+                url: "ajax/delete_notification.php",
+                data: { id: notificationId },
+                success: function(data) {
+                    // Handle success response
+                    Swal.fire(
+                        'Deleted!',
+                        'Your notification has been deleted.',
+                        'success'
+                    );
+                    // Optionally, you can reload the page or update the UI
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response
+                    Swal.fire(
+                        'Error!',
+                        'An error occurred while deleting the notification.',
+                        'error'
+                    );
+                    window.location.reload();
                 }
             });
-		},
-		success: function (data) {
-			$(".outer_div").html(data).fadeIn('slow');
-			Swal.close();
-		}
-	})
-}
+        }
+    });
+});
+
+
+new DataTable('#notification', {
+    ajax: {
+        url: "ajax/notification_list_ajax.php",
+        type: "POST",
+        dataSrc: "data"
+      }
+});
 
