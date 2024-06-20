@@ -12,7 +12,7 @@ $sql = "SELECT * FROM user WHERE (userlevel != 1)";
 $sql = "SELECT * FROM user WHERE (userlevel != 1 and userlevel != 9) and branch_id='".$_SESSION['branch']."'";
 }
 
-$db->cdp_query($sql.$where);
+$db->cdp_query($sql);
 $db->cdp_execute();
 $staffs = $db->cdp_registros();
 $rowCount = $db->cdp_rowCount();

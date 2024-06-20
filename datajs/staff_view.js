@@ -23,14 +23,16 @@ document.getElementById('removeBtn').addEventListener('click', function(event) {
 });
 
 $("#save_changes").on('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting normally
 
-    var parametros = $(this).serialize(); // Serialize form data
+    var formData = new FormData(this);
 
     $.ajax({
         type: "POST",
+        processData: false, 
+        contentType: false,
+        cache: false,
         url: "ajax/super/staff_update_ajax.php",
-        data: parametros,
+        data: formData,
         beforeSend: function (objeto) {
             // Display a loading message using SweetAlert before sending the AJAX request
             Swal.fire({
@@ -87,6 +89,8 @@ $("#save_changes").on('submit', function (event) {
             });
         }
     });
+
+    event.preventDefault(); // Prevent the form from submitting normally
 });
 
 $("#save_settings").on('submit', function (event) {

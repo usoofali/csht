@@ -34,7 +34,7 @@ $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 // set margins
 $pdf->setMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
 $pdf->setHeaderMargin(false);
-$pdf->setFooterMargin(0);
+$pdf->setFooterMargin(false);
 
 // set auto page breaks
 $pdf->setAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
