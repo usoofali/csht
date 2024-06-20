@@ -1794,7 +1794,7 @@ function update_notification_user($data)
 
     $db->bind(':user_id', $data['user_id']);
     $db->bind(':notification_id', $data['notification_id']);
-    
+
     return $db->cdp_execute();
 }
 
@@ -2016,7 +2016,7 @@ function update_skills($data)
 // Functions for other tables follow the same pattern...
 function update_staff($data)
 {
-    
+
     $db = new Conexion;
     $db->cdp_query('UPDATE staff SET
             about = :about,
@@ -2162,7 +2162,7 @@ function update_user($data)
 {
 
     $avatar = "";
-    if(isset($data['avatar'])){
+    if (isset($data['avatar'])) {
         $avatar = "avatar = :avatar,";
     }
 
@@ -2170,7 +2170,7 @@ function update_user($data)
     $db->cdp_query('UPDATE user SET
             fname = :fname,
             lname = :lname,
-            '.$avatar.'
+            ' . $avatar . '
             phone = :phone,
             gender = :gender,
             address = :address
@@ -2180,7 +2180,7 @@ function update_user($data)
 
     $db->bind(':fname', $data['fname']);
     $db->bind(':lname', $data['lname']);
-    if(isset($data['avatar'])){
+    if (isset($data['avatar'])) {
         $db->bind(':avatar', $data['avatar']);
     }
     $db->bind(':phone', $data['phone']);
@@ -2262,7 +2262,7 @@ function getAnyOne($query)
 function getBranch($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM branch WHERE ".$where." ORDER BY branch_id ASC";
+    $sql = "SELECT * FROM branch WHERE " . $where . " ORDER BY branch_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2273,7 +2273,7 @@ function getBranch($where)
 function getSession($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM session WHERE ".$where." ORDER BY session_id ASC";
+    $sql = "SELECT * FROM session WHERE " . $where . " ORDER BY session_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2284,7 +2284,7 @@ function getSession($where)
 function getUser($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM user WHERE ".$where." ORDER BY user_id ASC";
+    $sql = "SELECT * FROM user WHERE " . $where . " ORDER BY user_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2295,7 +2295,7 @@ function getUser($where)
 function getStaff($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM staff WHERE ".$where." ORDER BY staff_id ASC";
+    $sql = "SELECT * FROM staff WHERE " . $where . " ORDER BY staff_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2306,7 +2306,7 @@ function getStaff($where)
 function getDept($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM dept WHERE ".$where." ORDER BY dept_id ASC";
+    $sql = "SELECT * FROM dept WHERE " . $where . " ORDER BY dept_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2317,7 +2317,7 @@ function getDept($where)
 function getStudent($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM student WHERE ".$where." ORDER BY student_id ASC";
+    $sql = "SELECT * FROM student WHERE " . $where . " ORDER BY student_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2328,7 +2328,7 @@ function getStudent($where)
 function getCourse($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM course WHERE ".$where." ORDER BY course_id ASC";
+    $sql = "SELECT * FROM course WHERE " . $where . " ORDER BY course_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2339,7 +2339,7 @@ function getCourse($where)
 function getAllocation($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM allocation WHERE ".$where." ORDER BY allocation_id ASC";
+    $sql = "SELECT * FROM allocation WHERE " . $where . " ORDER BY allocation_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2350,7 +2350,7 @@ function getAllocation($where)
 function getAllocationHistory($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM allocation_history WHERE ".$where." ORDER BY allocation_id ASC";
+    $sql = "SELECT * FROM allocation_history WHERE " . $where . " ORDER BY allocation_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2361,7 +2361,7 @@ function getAllocationHistory($where)
 function getCourseRegister($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM course_register WHERE ".$where." ORDER BY course_register_id ASC";
+    $sql = "SELECT * FROM course_register WHERE " . $where . " ORDER BY course_register_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2372,7 +2372,7 @@ function getCourseRegister($where)
 function getTimetable($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM timetable WHERE ".$where." ORDER BY timetable_id ASC";
+    $sql = "SELECT * FROM timetable WHERE " . $where . " ORDER BY timetable_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2383,7 +2383,7 @@ function getTimetable($where)
 function getAttendance($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM attendance WHERE ".$where." ORDER BY attendance_id ASC";
+    $sql = "SELECT * FROM attendance WHERE " . $where . " ORDER BY attendance_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2394,7 +2394,7 @@ function getAttendance($where)
 function getMessage($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM message WHERE ".$where." ORDER BY message_id ASC";
+    $sql = "SELECT * FROM message WHERE " . $where . " ORDER BY message_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2405,7 +2405,7 @@ function getMessage($where)
 function getCredential($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM credential WHERE ".$where." ORDER BY credential_id ASC";
+    $sql = "SELECT * FROM credential WHERE " . $where . " ORDER BY credential_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2416,7 +2416,7 @@ function getCredential($where)
 function getCredentialDetails($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM credential_details WHERE ".$where." ORDER BY credential_details_id ASC";
+    $sql = "SELECT * FROM credential_details WHERE " . $where . " ORDER BY credential_details_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2427,7 +2427,7 @@ function getCredentialDetails($where)
 function getEmailTemplate($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM email_template WHERE ".$where." ORDER BY email_template_id ASC";
+    $sql = "SELECT * FROM email_template WHERE " . $where . " ORDER BY email_template_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2438,7 +2438,7 @@ function getEmailTemplate($where)
 function getNotification($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM notification WHERE ".$where." ORDER BY notification_id ASC";
+    $sql = "SELECT * FROM notification WHERE " . $where . " ORDER BY notification_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2449,7 +2449,7 @@ function getNotification($where)
 function getNotificationUser($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM notification_user WHERE ".$where." ORDER BY notification_user_id ASC";
+    $sql = "SELECT * FROM notification_user WHERE " . $where . " ORDER BY notification_user_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2460,7 +2460,7 @@ function getNotificationUser($where)
 function getState($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM state WHERE ".$where." ORDER BY state_id ASC";
+    $sql = "SELECT * FROM state WHERE " . $where . " ORDER BY state_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2471,7 +2471,7 @@ function getState($where)
 function getCity($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM city WHERE ".$where." ORDER BY city_id ASC";
+    $sql = "SELECT * FROM city WHERE " . $where . " ORDER BY city_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2482,7 +2482,7 @@ function getCity($where)
 function getAddress($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM address WHERE ".$where." ORDER BY address_id ASC";
+    $sql = "SELECT * FROM address WHERE " . $where . " ORDER BY address_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2493,7 +2493,7 @@ function getAddress($where)
 function getSettings($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM settings WHERE ".$where." ORDER BY settings_id ASC";
+    $sql = "SELECT * FROM settings WHERE " . $where . " ORDER BY settings_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2505,7 +2505,7 @@ function getSettings($where)
 function getStyle($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM style WHERE ".$where." ORDER BY style_id ASC";
+    $sql = "SELECT * FROM style WHERE " . $where . " ORDER BY style_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2516,7 +2516,7 @@ function getStyle($where)
 function getInvoice($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM invoice WHERE ".$where." ORDER BY invoice_id ASC";
+    $sql = "SELECT * FROM invoice WHERE " . $where . " ORDER BY invoice_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2527,7 +2527,7 @@ function getInvoice($where)
 function getGenerated($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM generated WHERE ".$where." ORDER BY generated_id ASC";
+    $sql = "SELECT * FROM generated WHERE " . $where . " ORDER BY generated_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2538,7 +2538,7 @@ function getGenerated($where)
 function getPaidInvoice($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM paid_invoice WHERE ".$where." ORDER BY paid_invoice_id ASC";
+    $sql = "SELECT * FROM paid_invoice WHERE " . $where . " ORDER BY paid_invoice_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2549,7 +2549,7 @@ function getPaidInvoice($where)
 function getPortfolio($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM portfolio WHERE ".$where." ORDER BY portfolio_id ASC";
+    $sql = "SELECT * FROM portfolio WHERE " . $where . " ORDER BY portfolio_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2560,7 +2560,7 @@ function getPortfolio($where)
 function getTestimonial($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM testimonial WHERE ".$where." ORDER BY testimonial_id ASC";
+    $sql = "SELECT * FROM testimonial WHERE " . $where . " ORDER BY testimonial_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2571,7 +2571,7 @@ function getTestimonial($where)
 function getEducation($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM education WHERE ".$where." ORDER BY education_id ASC";
+    $sql = "SELECT * FROM education WHERE " . $where . " ORDER BY education_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2582,7 +2582,7 @@ function getEducation($where)
 function getExperience($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM experience WHERE ".$where." ORDER BY experience_id ASC";
+    $sql = "SELECT * FROM experience WHERE " . $where . " ORDER BY experience_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2593,7 +2593,7 @@ function getExperience($where)
 function getJob($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM job WHERE ".$where." ORDER BY function_id ASC";
+    $sql = "SELECT * FROM job WHERE " . $where . " ORDER BY function_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2604,7 +2604,7 @@ function getJob($where)
 function getSkills($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM skills WHERE ".$where." ORDER BY skills_id ASC";
+    $sql = "SELECT * FROM skills WHERE " . $where . " ORDER BY skills_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2615,7 +2615,7 @@ function getSkills($where)
 function getItem($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM item WHERE ".$where." ORDER BY item_id ASC";
+    $sql = "SELECT * FROM item WHERE " . $where . " ORDER BY item_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2626,7 +2626,7 @@ function getItem($where)
 function getFacts($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM facts WHERE ".$where." ORDER BY facts_id ASC";
+    $sql = "SELECT * FROM facts WHERE " . $where . " ORDER BY facts_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -2637,7 +2637,7 @@ function getFacts($where)
 function getForm($where)
 {
     $db = new Conexion;
-    $sql = "SELECT * FROM form WHERE ".$where." ORDER BY form_id ASC";
+    $sql = "SELECT * FROM form WHERE " . $where . " ORDER BY form_id ASC";
     $db->cdp_query($sql);
     $db->cdp_execute();
     $row = $db->cdp_registros();
@@ -3025,7 +3025,7 @@ function getAllForm()
 function deleteBranch($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM branch WHERE branch_id = ". $query;
+    $sql = "DELETE FROM branch WHERE branch_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3034,7 +3034,7 @@ function deleteBranch($query)
 function deleteSession($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM session WHERE session_id = ". $query;
+    $sql = "DELETE FROM session WHERE session_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3043,7 +3043,7 @@ function deleteSession($query)
 function deleteUser($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM user WHERE user_id = ". $query;
+    $sql = "DELETE FROM user WHERE user_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3052,7 +3052,7 @@ function deleteUser($query)
 function deleteStaff($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM staff WHERE user_id = ". $query;
+    $sql = "DELETE FROM staff WHERE user_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3061,7 +3061,7 @@ function deleteStaff($query)
 function deleteDept($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM dept WHERE dept_id = ". $query;
+    $sql = "DELETE FROM dept WHERE dept_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3070,7 +3070,7 @@ function deleteDept($query)
 function deleteStudent($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM student WHERE student_id = ". $query;
+    $sql = "DELETE FROM student WHERE student_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3079,7 +3079,7 @@ function deleteStudent($query)
 function deleteCourse($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM course WHERE course_id = ". $query;
+    $sql = "DELETE FROM course WHERE course_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3088,7 +3088,7 @@ function deleteCourse($query)
 function deleteAllocation($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM allocation WHERE allocation_id = ". $query;
+    $sql = "DELETE FROM allocation WHERE allocation_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3097,7 +3097,7 @@ function deleteAllocation($query)
 function deleteAllocationHistory($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM allocation_history WHERE allocation_id = ". $query;
+    $sql = "DELETE FROM allocation_history WHERE allocation_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3106,7 +3106,7 @@ function deleteAllocationHistory($query)
 function deleteCourseRegister($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM course_register WHERE course_register_id = ". $query;
+    $sql = "DELETE FROM course_register WHERE course_register_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3115,7 +3115,7 @@ function deleteCourseRegister($query)
 function deleteTimetable($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM timetable WHERE timetable_id = ". $query;
+    $sql = "DELETE FROM timetable WHERE timetable_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3124,7 +3124,7 @@ function deleteTimetable($query)
 function deleteSigning($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM signing WHERE signing_id = ". $query;
+    $sql = "DELETE FROM signing WHERE signing_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3133,7 +3133,7 @@ function deleteSigning($query)
 function deleteMessage($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM message WHERE message_id = ". $query;
+    $sql = "DELETE FROM message WHERE message_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3142,7 +3142,7 @@ function deleteMessage($query)
 function deleteCredential($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM credential WHERE credential_id = ". $query;
+    $sql = "DELETE FROM credential WHERE credential_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3151,7 +3151,7 @@ function deleteCredential($query)
 function deleteCredentialDetails($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM credential_details WHERE credential_details_id = ". $query;
+    $sql = "DELETE FROM credential_details WHERE credential_details_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3160,7 +3160,7 @@ function deleteCredentialDetails($query)
 function deleteEmailTemplate($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM email_template WHERE email_template_id = ". $query;
+    $sql = "DELETE FROM email_template WHERE email_template_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3169,7 +3169,7 @@ function deleteEmailTemplate($query)
 function deleteNotification($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM notification WHERE notification_id = ". $query;
+    $sql = "DELETE FROM notification WHERE notification_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3178,7 +3178,7 @@ function deleteNotification($query)
 function deleteNotificationUser($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM notification_user WHERE notification_id = ". $query;
+    $sql = "DELETE FROM notification_user WHERE notification_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3187,7 +3187,7 @@ function deleteNotificationUser($query)
 function deleteState($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM state WHERE state_id = ". $query;
+    $sql = "DELETE FROM state WHERE state_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3196,7 +3196,7 @@ function deleteState($query)
 function deleteCity($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM city WHERE city_id = ". $query;
+    $sql = "DELETE FROM city WHERE city_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3205,7 +3205,7 @@ function deleteCity($query)
 function deleteAddress($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM address WHERE address_id = ". $query;
+    $sql = "DELETE FROM address WHERE address_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3214,7 +3214,7 @@ function deleteAddress($query)
 function deleteSettings($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM settings WHERE settings_id = ". $query;
+    $sql = "DELETE FROM settings WHERE settings_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3223,7 +3223,7 @@ function deleteSettings($query)
 function deleteInvoice($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM invoice WHERE invoice_id = ". $query;
+    $sql = "DELETE FROM invoice WHERE invoice_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3232,7 +3232,7 @@ function deleteInvoice($query)
 function deleteGenerated($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM generated WHERE generated_id = ". $query;
+    $sql = "DELETE FROM generated WHERE generated_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3241,7 +3241,7 @@ function deleteGenerated($query)
 function deletePaidInvoice($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM paid_invoice WHERE paid_invoice_id = ". $query;
+    $sql = "DELETE FROM paid_invoice WHERE paid_invoice_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3250,7 +3250,7 @@ function deletePaidInvoice($query)
 function deletePortfolio($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM portfolio WHERE portfolio_id = ". $query;
+    $sql = "DELETE FROM portfolio WHERE portfolio_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3259,7 +3259,7 @@ function deletePortfolio($query)
 function deleteTestimonial($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM testimonial WHERE testimonial_id = ". $query;
+    $sql = "DELETE FROM testimonial WHERE testimonial_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3268,7 +3268,7 @@ function deleteTestimonial($query)
 function deleteEducation($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM education WHERE education_id = ". $query;
+    $sql = "DELETE FROM education WHERE education_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3277,7 +3277,7 @@ function deleteEducation($query)
 function deleteExperience($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM experience WHERE experience_id = ". $query;
+    $sql = "DELETE FROM experience WHERE experience_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3286,7 +3286,7 @@ function deleteExperience($query)
 function deleteJob($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM job WHERE job_id = ". $query;
+    $sql = "DELETE FROM job WHERE job_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3295,7 +3295,7 @@ function deleteJob($query)
 function deleteSkills($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM skills WHERE skills_id = ". $query;
+    $sql = "DELETE FROM skills WHERE skills_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3304,7 +3304,7 @@ function deleteSkills($query)
 function deleteItem($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM item WHERE item_id = ". $query;
+    $sql = "DELETE FROM item WHERE item_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3313,7 +3313,7 @@ function deleteItem($query)
 function deleteFacts($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM facts WHERE facts_id = ". $query;
+    $sql = "DELETE FROM facts WHERE facts_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3322,7 +3322,7 @@ function deleteFacts($query)
 function deleteForm($query)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM form WHERE form_id = ". $query;
+    $sql = "DELETE FROM form WHERE form_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
