@@ -71,7 +71,7 @@ if ($rowCount > 0) {
                         $href = 'student_view.php?id=' . $key->acted_id . '&notification_id=' . $key->notification_id;
                         break;
                     default:
-                        $href = 'staff_view.php?id=' . $key->acted_id . '&notification_id=' . $key->notification_id;
+                        $href = '#';
                         break;
                 }
                 ?>

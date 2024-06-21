@@ -28,6 +28,19 @@
 	</ul>
   </li>
   <li class="nav-item">
+	<a class="nav-link collapsed" data-bs-target="#session-nav" data-bs-toggle="collapse" href="#">
+	  <i class="bi bi-building"></i><span><?php echo $lang['session']; ?></span><i class="bi bi-chevron-down ms-auto"></i>
+	</a>
+	<ul id="session-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+	  <li>
+		<a href="super_view_session.php">
+		  <i class="bi bi-check-lg"></i><span><?php echo $lang['view_session']; ?></span>
+		</a>
+	  </li>
+	  
+	</ul>
+  </li>
+  <li class="nav-item">
 	<a class="nav-link collapsed" data-bs-target="#dept-nav" data-bs-toggle="collapse" href="#">
 	  <i class="bi bi-building"></i><span><?php echo $lang['dept']; ?></span><i class="bi bi-chevron-down ms-auto"></i>
 	</a>

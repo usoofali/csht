@@ -782,17 +782,17 @@ function insert_session($data)
     $db = new Conexion;
     $db->cdp_query('INSERT INTO session
         (
-            session_id,
+            session,
             year,
             current
         )
         VALUES (
-            :session_id,
+            :session,
             :year,
             :current
         )');
 
-    $db->bind(':session_id', $data['session_id']);
+    $db->bind(':session', $data['session']);
     $db->bind(':year', $data['year']);
     $db->bind(':current', $data['current']);
     return $db->cdp_execute();
@@ -1860,14 +1860,12 @@ function update_session($data)
 {
     $db = new Conexion;
     $db->cdp_query('UPDATE session SET
-            year = :year,
             current = :current
         WHERE
             session_id = :session_id
         ');
 
-    $db->bind(':year', $data['year']);
-    $db->bind(':current', $data['current']);
+    $db->bind(':current', 0);
     $db->bind(':session_id', $data['session_id']);
     return $db->cdp_execute();
 }
