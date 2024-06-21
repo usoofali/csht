@@ -20,7 +20,7 @@ $pdf->setSubject('Offer');
 $pdf->setKeywords('PDF, Appointment');
 
 // set default header data
-$header_string = '+'. $core->c_phone. ' | ' . $core->site_email;
+$header_string = '+' . $core->c_phone . ' | ' . $core->site_email;
 // $pdf->setHeaderData(PDF_HEADER_LOGO, 20, $core->site_name, $header_string.'                                  
 // '. $core->c_address .', '. $core->c_city .', '. $core->c_postal, array(0,255,0), array(0,0,0));
 
@@ -43,8 +43,8 @@ $pdf->setAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-	require_once(dirname(__FILE__).'/lang/eng.php');
+if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
+	require_once(dirname(__FILE__) . '/lang/eng.php');
 	$pdf->setLanguageArray($l);
 }
 
@@ -65,7 +65,7 @@ $pdf->AddPage();
 $style = array(
 	'border' => false,
 	'padding' => 0,
-	'fgcolor' => array(0,0,0),
+	'fgcolor' => array(0, 0, 0),
 	'bgcolor' => false
 );
 
