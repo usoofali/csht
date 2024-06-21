@@ -1,10 +1,11 @@
 <?php
-require_once("../../loader.php");
-require_once("../../helpers/querys.php");
+require_once ("../../loader.php");
+require_once ("../../helpers/querys.php");
 // require_once("../../helpers/queries.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require '../../helpers/PHPMailer/src/Exception.php';
 require '../../helpers/PHPMailer/src/PHPMailer.php';
 require '../../helpers/PHPMailer/src/SMTP.php';
@@ -15,7 +16,6 @@ $db = new Conexion;
 
 $errors = array();
 $messages = array();
-
 $userRoles = array(
     9 => "Super User",
     1 => "Student",
@@ -26,7 +26,7 @@ $userRoles = array(
     6 => "Registrar",
     7 => "Lecturer",
     8 => "Provost"
-  );
+);
 
 $fields = array(
     'fname' => 'First Name',
@@ -44,7 +44,7 @@ $fields = array(
     'account_number' => 'Account Number',
     'account_name' => 'Account Name',
     'account_bank' => 'Bank'
-  );
+);
 
 foreach ($fields as $field => $label) {
     if (empty($_POST[$field])) {
@@ -78,10 +78,10 @@ if ($_POST['userlevel'] == "") {
     $errors['userlevel'] = "Select User Role";
 }
 
-if(!empty($_POST['account_no'])){
-  if (!preg_match("/^\d{10}$/", $_POST['account_no'])) {
-    $errors["account"] = "Invalid account number";
-  } 
+if (!empty($_POST['account_no'])) {
+    if (!preg_match("/^\d{10}$/", $_POST['account_no'])) {
+        $errors["account"] = "Invalid account number";
+    }
 }
 
 // Additional checks for specific inputs
@@ -91,7 +91,7 @@ if (empty($_FILES['avatar']['name'])) {
 
 // Processing the data if no errors
 if (empty($errors)) {
-    
+
     if (!empty($_FILES['avatar']['name'])) {
 
         $target_dir = "../../uploads/images/";
@@ -104,7 +104,7 @@ if (empty($errors)) {
         $imageFileZise = $_FILES["avatar"]["size"];
 
         if ($imageFileType != "pdf" && ($imageFileType != "png" && $imageFileType != "jpg" && $imageFileType != "jpeg")) {
-            
+
             $errors['file_type'] = $lang['file_type'];
 
         } else if (empty($_FILES['avatar']['size'])) { //1048576 byte=1MB
@@ -113,7 +113,7 @@ if (empty($errors)) {
 
         } else {
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
-            $avatar = "uploads/images/".$image_name;
+            $avatar = "uploads/images/" . $image_name;
         }
 
         // Construct the data array
@@ -126,7 +126,7 @@ if (empty($errors)) {
             'avatar' => $avatar,
             'phone' => $_POST['phone'],
             'gender' => $_POST['gender'],
-            'address' => $_POST['address'].', '.$_POST['city'].', '.$_POST['state']. ' State.',
+            'address' => $_POST['address'] . ', ' . $_POST['city'] . ', ' . $_POST['state'] . ' State.',
             'newsletter' => isset($_POST['newsletter']) ? $_POST['newsletter'] : 0,
             'active' => isset($_POST['active']) ? $_POST['active'] : 0,
             'userlevel' => $_POST['userlevel'],
@@ -140,8 +140,8 @@ if (empty($errors)) {
     $user_id = '';
 
     if ($insert) {
-        $user_id = getUser("email='".strtolower(trim($_POST['email']))."'")[0]->user_id;
-        if(isset($_POST['account_bank']) and isset($_POST['account_name']) and isset($_POST['account_number'])){
+        $user_id = getUser("email='" . strtolower(trim($_POST['email'])) . "'")[0]->user_id;
+        if (isset($_POST['account_bank']) and isset($_POST['account_name']) and isset($_POST['account_number'])) {
             $data = array(
                 'account_bank' => trim($_POST['account_bank']),
                 'account_name' => strtoupper(trim($_POST['account_name'])),
@@ -153,42 +153,43 @@ if (empty($errors)) {
         }
 
         $action_history = array(
-            'user_id' =>  $_SESSION['userid'],
-            'acted_id' =>  $user_id,
+            'user_id' => $_SESSION['userid'],
+            'acted_id' => $user_id,
             'action_type' => $lang['add_staff'],
-            'action' =>  $lang['add_staff_action'],
-            'date_history' =>  date("Y-m-d H:i:s"),
-          );
-      
-          //INSERT HISTORY USER
-          insert_user_action_history(
-              $action_history
-          );
-      
-          $notification_data = array(
-              'user_id' =>  $_SESSION['userid'],
-              'acted_id' =>   $user_id,
-              'action_type' => $lang['add_staff'],
-              'description' => $lang['add_staff_notification']
-          );
-          // SAVE NOTIFICATION
-          insert_notification($notification_data);
-      
-          $notification_id = $db->dbh->lastInsertId();
-      
-      
-          $staff = getUser("userlevel != 1 and branch_id ='".$_POST['branch']."'");
-      
-          foreach ($staff as $key) {
-              $userNotification = array(
-              "notification_id" => $notification_id,
-              "branch_id" => $key->branch_id,
-              "user_id" => $key->user_id);
-              insert_notification_user($userNotification);
-          }
+            'action' => $lang['add_staff_action'],
+            'date_history' => date("Y-m-d H:i:s"),
+        );
+
+        //INSERT HISTORY USER
+        insert_user_action_history(
+            $action_history
+        );
+
+        $notification_data = array(
+            'user_id' => $_SESSION['userid'],
+            'acted_id' => $user_id,
+            'action_type' => $lang['add_staff'],
+            'description' => $lang['add_staff_notification']
+        );
+        // SAVE NOTIFICATION
+        insert_notification($notification_data);
+
+        $notification_id = $db->dbh->lastInsertId();
+
+
+        $staff = getUser("userlevel != 1 and branch_id ='" . $_POST['branch'] . "'");
+
+        foreach ($staff as $key) {
+            $userNotification = array(
+                "notification_id" => $notification_id,
+                "branch_id" => $key->branch_id,
+                "user_id" => $key->user_id
+            );
+            insert_notification_user($userNotification);
+        }
 
         $messages['data_success'] = $lang['data_success'];
-        
+
     } else {
         $errors['data_fail'] = $lang['data_fail'];
         $errors['data_exist'] = $lang['data_exist'];
@@ -196,90 +197,88 @@ if (empty($errors)) {
 
     try {
         $settings = getSettings("settings_id=1")[0];
-        $staff =  ucfirst(trim($_POST['lname'])) .' '. ucfirst(trim($_POST['fname']));
+        $staff = ucfirst(trim($_POST['lname'])) . ' ' . ucfirst(trim($_POST['fname']));
         $template = getEmailTemplate("name='welcome-staff'")[0];
         $body = str_replace(
-        array(
-          '[URL]',
-          '[STAFF]',
-          '[IT_SUPPORT_MAIL]',
-          '[PHONE]',
-          '[PROVOST]',
-          '[ABOUT]',
-          '[ADDRESS]',
-          '[CITY]',
-          '[STATE]',
-          '[SITE_NAME]'
-        ),
-        array(
-            $settings->site_url,
-            $staff,
-            $settings->support_mail,
-            $settings->c_phone,
-            $settings->provost,
-            $settings->about,
-            $settings->c_address,
-            $settings->c_city,
-            $settings->c_state,
-            $settings->site_url
-        ),
-        $template->body
-      );
-    
-     //Create an instance; passing `true` enables exceptions
-      $mail = new PHPMailer(true);
-      //Server settings
-      // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-      $mail->isMail();                                            //Send using SMTP
-      $mail->Host       = $settings->smtp_host;                   //Set the SMTP server to send through
-      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = $settings->info_mail;                     //SMTP username
-      $mail->Password   = $settings->smtp_password;                               //SMTP password
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-      $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    
-      // Recipients
-      $mail->setFrom($settings->operations_mail, $settings->site_name);
-      $to = strtolower(trim($_POST['email']));
-      $mail->addAddress($to, $staff);
-      $mail->addReplyTo($settings->site_email, 'Information');
-      $mail->addCC($settings->site_email);
-      $mail->addBCC($settings->info_mail);
-    
-      // //Attachments
-      // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-    
-      //Content
-      $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = $template->subject;
-      $mail->Body    = $body;
-      $mail->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-      );
-      $mail->send();
-     
-      if ($mail) {
-        $messages['success_message'] =  " Email sent successfully.";
-      } else {
-        $messages['fail_message']  =  "Failed to send email.";
-      }
+            array(
+                '[URL]',
+                '[STAFF]',
+                '[IT_SUPPORT_MAIL]',
+                '[PHONE]',
+                '[PROVOST]',
+                '[ABOUT]',
+                '[ADDRESS]',
+                '[CITY]',
+                '[STATE]',
+                '[SITE_NAME]'
+            ),
+            array(
+                $settings->site_url,
+                $staff,
+                $settings->support_mail,
+                $settings->c_phone,
+                $settings->provost,
+                $settings->about,
+                $settings->c_address,
+                $settings->c_city,
+                $settings->c_state,
+                $settings->site_url
+            ),
+            $template->body
+        );
+
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        //Server settings
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isMail();                                            //Send using SMTP
+        $mail->Host = $settings->smtp_host;                   //Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+        $mail->Username = $settings->info_mail;                     //SMTP username
+        $mail->Password = $settings->smtp_password;                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+        $mail->Port = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        // Recipients
+        $mail->setFrom($settings->operations_mail, $settings->site_name);
+        $to = strtolower(trim($_POST['email']));
+        $mail->addAddress($to, $staff);
+        $mail->addReplyTo($settings->site_email, 'Information');
+        $mail->addCC($settings->site_email);
+        $mail->addBCC($settings->info_mail);
+
+        // //Attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $template->subject;
+        $mail->Body = $body;
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $mail->send();
+
+        if ($mail) {
+            $messages['success_message'] = " Email sent successfully.";
+        } else {
+            $messages['fail_message'] = "Failed to send email.";
+        }
     } catch (Exception $e) {
-      $messages['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $messages['error'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
-    
-      
 }
 
 if (!empty($errors)) {
     $html = '<ul style="text-align: left;">';
     foreach ($errors as $error) {
-        $html .= '<li><i class="icon-double-angle-right"></i>'.$error.'</li>';
+        $html .= '<li><i class="icon-double-angle-right"></i>' . $error . '</li>';
     }
     $html .= '</ul>';
 
@@ -290,7 +289,7 @@ if (!empty($errors)) {
 } else {
     $html = '<ul style="text-align: left;">';
     foreach ($messages as $msg) {
-        $html .= '<li><i class="icon-double-angle-right"></i>'.$msg.'</li>';
+        $html .= '<li><i class="icon-double-angle-right"></i>' . $msg . '</li>';
     }
     $html .= '</ul>';
     echo json_encode([
