@@ -14,12 +14,13 @@ class User
     public $userrole;
     public $theme;
     public $avatar;
+    public $user_lang;
     public $branch;
     private $db;
     private $result;
     public $sWhere;
     public $sql;
-    public $errors   = array();
+    public $errors = array();
 
 
     function __construct()
@@ -62,6 +63,7 @@ class User
             $this->userrole = $row->userrole;
             $this->theme = $row->theme;
             $this->avatar = $row->avatar;
+            $this->user_lang = $row->language;
             return true;
         } else {
             return false;
@@ -75,7 +77,7 @@ class User
     {
         if ($this->userlevel == 9) {
             return true;
-        } else  if ($this->userlevel == 2) {
+        } else if ($this->userlevel == 2) {
             return true;
         } else {
             return false;
@@ -305,18 +307,19 @@ class User
         return $list;
     }
 
-    public function getFileNamesIn($directory) {
+    public function getFileNamesIn($directory)
+    {
         // Check if the directory exists
         if (!is_dir($directory)) {
             return false;
         }
-    
+
         // Get the list of files in the directory
         $files = scandir($directory);
-    
+
         // Remove . and .. from the list
         $files = array_diff($files, array('.', '..'));
-    
+
         // Return the list of file names
         return $files;
     }

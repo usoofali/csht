@@ -35,11 +35,6 @@ $lang = array(
 	"save_changes"=> "Save Changes",
 	"theme"=> "Theme",
 	"language"=> "Language",
-	"en"=>"English",
-	"ha"=> "Hausa",
-	"yb"=> "Yoruba",
-	"ib"=> "Igbo",
-
 	"currentpassword"=> "Current Password",
 	"newpassword"=> "New Password",
 	"renewpassword"=> "Re-enter New Password",

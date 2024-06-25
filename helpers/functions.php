@@ -1,15 +1,8 @@
 <?php
 
-
-
-
-
-
-
-
 function cdp_cleanOutx($text)
 {
-  $text =  strtr($text, array('\r\n' => "", '\r' => "", '\n' => ""));
+  $text = strtr($text, array('\r\n' => "", '\r' => "", '\n' => ""));
   $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
   $text = str_replace('<br>', '<br />', $text);
   return stripslashes($text);
@@ -17,16 +10,16 @@ function cdp_cleanOutx($text)
 
 
 /**
-     * validate track()
-     */
-  function cdp_validateTrack($value)
-  {
+ * validate track()
+ */
+function cdp_validateTrack($value)
+{
 
-      $valid_uname = "/^[A-Z-a-z0-9_-]{4,55}$/"; 
-        if (!preg_match($valid_uname, $value))
-            return 2;
-      
-  }   
+  $valid_uname = "/^[A-Z-a-z0-9_-]{4,55}$/";
+  if (!preg_match($valid_uname, $value))
+    return 2;
+
+}
 
 
 function cdp_email_users_notificationsx($array)
@@ -95,7 +88,7 @@ function cdb__forma($amount)
     $dec_digit = 0;
   }
 
-  $retval =  number_format($amount, $dec_digit, $curr_point, $curr_sep);
+  $retval = number_format($amount, $dec_digit, $curr_point, $curr_sep);
 
   return $retval;
 }

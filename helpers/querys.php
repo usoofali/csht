@@ -2264,12 +2264,14 @@ function update_theme($data)
 {
     $db = new Conexion;
     $db->cdp_query('UPDATE user SET
-            theme = :theme
+            theme = :theme,
+            language = :language
         WHERE
             user_id = :user_id
         ');
 
     $db->bind(':theme', $data['theme']);
+    $db->bind(':language', $data['language']);
     $db->bind(':user_id', $data['user_id']);
     return $db->cdp_execute();
 }

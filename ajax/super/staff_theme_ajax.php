@@ -9,7 +9,8 @@ if (empty($errors)) {
 
   $data = array(
     'user_id' => $_POST['user_id'],
-    'theme' => $_POST['theme']
+    'theme' => $_POST['theme'],
+    'language' => $_POST['language'],
   );
 
    $update = update_theme($data);

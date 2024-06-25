@@ -6,9 +6,14 @@ require_once ("../../helpers/querys.php");
 $user = new User;
 $core = new Core;
 $db = new Conexion;
-$sql = "SELECT staff.staff_id FROM user INNER JOIN staff on user.user_id = staff.user_id WHERE user_id=" . $user->uid;
+
+$sql = "SELECT dept.dept_id FROM user 
+    INNER JOIN staff on user.user_id = staff.user_id 
+    INNER JOIN dept on staff.staff_id = dept.staff_id WHERE user.user_id=" . $user->uid;
+
 $db->cdp_query($sql);
-$hod = $db->cdp_registro();
+$dept = $db->cdp_registro();
+error_log(json_encode($dept));
 
 $errors = array();
 
@@ -35,7 +40,7 @@ if (empty($errors)) {
         'unit' => strtoupper(trim($_POST['unit'])),
         'level' => strtoupper(trim($_POST['level'])),
         'semester' => strtoupper(trim($_POST['semester'])),
-        'dept_id' => strtoupper(trim($_POST['code']))
+        'dept_id' => $dept->dept_id
     );
 
     $insert = insert_course($data);
