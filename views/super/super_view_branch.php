@@ -58,8 +58,8 @@
 <?php include('views/inc/footer-script.php');?> 
 <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
-<script src="datajs/branch_view.js"></script>
 <script src="datajs/branch.js"></script>
+<script src="datajs/branch_list.js"></script>
 
 </body>
 

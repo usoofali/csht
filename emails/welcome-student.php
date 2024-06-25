@@ -1,4 +1,4 @@
-<!-- Subject: Welcome to Community School of Health Technology Gusau
+<!-- Subject: Welcome to [SCHOOL]
 <!--
 * This email was built using Tabular.
 * For more information, visit https://tabular.email
@@ -131,7 +131,7 @@ h1,img,p{margin:0;Margin:0}img,p{font-family:Lora,Georgia,Times New Roman,Times,
 <td class="t2" style="">
 
 <div style="font-size:0px;">
-<img class="t0" style="display:block;border:0;Margin:0;max-width:100%;" width="75" height="75" alt="" src="./images/logo.png"/>
+<img class="t0" style="display:block;border:0;Margin:0;max-width:100%;" width="75" height="75" alt="" src="[URL][LOGO]"/>
 </div>
 </td>
 </tr></table>
@@ -155,7 +155,7 @@ Dear [STUDENT],</p></td>
 <td class="t10" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t9" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Welcome to the Community School of Health Technology Gusau – your gateway to a world of knowledge, growth, and opportunity!
+Welcome to the [SCHOOL] – your gateway to a world of knowledge, growth, and opportunity!
 </tr></table>
 </td></tr><tr><td><div class="t12" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -177,7 +177,7 @@ As you embark on this exciting journey as a student of our institution, know tha
 <td class="t18" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Here at Community School of Health Technology Gusau, we believe in nurturing the potential of each and every student. Our departments and staff are committed to providing you with the support, resources, and guidance you need to thrive academically and beyond.
+Here at [SCHOOL], we believe in nurturing the potential of each and every student. Our departments and staff are committed to providing you with the support, resources, and guidance you need to thrive academically and beyond.
 </tr>
 </table>
 </td></tr><tr><td><div class="t20" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
@@ -205,7 +205,7 @@ Take advantage of the diverse learning experiences available to you, engage with
 <!--[if !mso]>-->
 	<td class="t18" style="width:440px;padding:0 20px 0 20px;">
 		<p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-		Visit our school portal at <a href="[URL]/pages-login.php">CSHT Gusau</a>, Log in with your provided username and password. If you haven't received your login credentials, please contact our IT support at [IT_SUPPORT_MAIL]/[PHONE]. </p>
+		Visit our school portal at <a href="[URL]">[SCHOOL]</a>, Log in with your provided username and password. If you haven't received your login credentials, please contact our IT support at [IT_SUPPORT_MAIL]/[PHONE]. </p>
 		
 
 </tr>
@@ -234,7 +234,7 @@ If you ever have questions, need advice, or simply want to connect with someone,
 <td class="t18" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Once again, welcome to the Community School of Health Technology Gusau. We can't wait to see all that you will accomplish during your time with us!
+Once again, welcome to the [SCHOOL]. We can't wait to see all that you will accomplish during your time with us!
 </tr>
 </table>
 </td></tr><tr><td><div class="t20" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
@@ -285,7 +285,7 @@ Provost</p></td>
 <!--[if !mso]>-->
 <td class="t26" style="width:258px;padding:0 20px 0 20px;">
 
-<div style="font-size:0px;"><img class="t25" style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width="258" height="73.703125" alt="" src="./images/2.png"/></div></td>
+<div style="font-size:0px;"><img class="t25" style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width="258" height="73.703125" alt="" src="[URL][SIGNATURE]"/></div></td>
 </tr></table>
 </td></tr><tr><td><div class="t28" style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -296,7 +296,7 @@ Provost</p></td>
 <td class="t30" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t29" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:20px;font-weight:400;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#878787;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
-[ABOUT]. [SITE_NAME]. [ADDRESS], [CITY]-[STATE], Nigeria</p></td>
+[ABOUT]. [SITE_NAME]. [ADDRESS], [CITY]-[STATE], [COUNTRY]</p></td>
 </tr></table>
 </td></tr><tr><td><div class="t32" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->

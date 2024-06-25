@@ -3,6 +3,7 @@
 
 <head>
   <?php include ('views/inc/topbar-script.php'); ?>
+  <link href="assets/sweetalert/sweetalert2.min.css" rel="stylesheet">
   <?php $user = new User; ?>
   <link type="text/css" href="assets/css/<?php echo $user->theme; ?>" rel="stylesheet">
 </head>
@@ -30,10 +31,10 @@
         <div class="col-12">
           <div class="card recent-sales overflow-auto">
             <div class="card-body">
-              <h5 class="card-title">All <span>| Session </span></h5>
+              <h5 class="card-title"><?php echo $lang['all']; ?> <span>| <?php echo $lang['session']; ?> </span></h5>
               <div class="ms-auto">
-                <button type="button" class="btn btn-success create-session"><i class="bi bi-check-circle"></i> Create New
-                  Session</button>
+                <button type="button" class="btn btn-success create-session"><i class="bi bi-check-circle"></i>
+                  <?php echo $lang['add_session']; ?></button>
               </div>
               <br>
               <table id='sessions' class="display responsive nowrap" width="100%">

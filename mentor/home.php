@@ -472,62 +472,6 @@
   <!-- Main JS File -->
   <script src="mentor/assets/js/main.js"></script>
 
-  <!-- <script>
-    const successCallback = (position) => {
-    console.log(position);
-    };
-
-    const errorCallback = (error) => {
-    console.log(error);
-    };
-
-    const options = {
-    enableHighAccuracy: true,
-    timeout: 10000,
-    };
-
-    navigator.geolocation.getCurrentPosition(
-    successCallback,
-    errorCallback,
-    options
-    );
-
-    const geofence = [
-    { lat: 37.7749, lng: -122.4194 }, // San Francisco, CA
-    { lat: 34.0522, lng: -118.2437 }, // Los Angeles, CA
-    { lat: 40.7128, lng: -74.0060 }   // New York City, NY
-    // Add more coordinates as needed
-];
-
-// Function to check if a point is inside the geofence
-function isInsideGeofence(point) {
-    let isInside = false;
-    let x = point.lat, y = point.lng;
-
-    for (let i = 0, j = geofence.length - 1; i < geofence.length; j = i++) {
-        let xi = geofence[i].lat, yi = geofence[i].lng;
-        let xj = geofence[j].lat, yj = geofence[j].lng;
-
-        let intersect = ((yi > y) != (yj > y)) &&
-            (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-
-        if (intersect) isInside = !isInside;
-    }
-
-    return isInside;
-}
-
-// Example point to check if it's inside the geofence
-const pointToCheck = { lat: 38.9072, lng: -77.0369 }; // Washington, D.C.
-
-// Check if the point is inside the geofence
-if (isInsideGeofence(pointToCheck)) {
-    console.log("Point is inside the geofence");
-} else {
-    console.log("Point is outside the geofence");
-}
-</script> -->
-
 </body>
 
 </html>

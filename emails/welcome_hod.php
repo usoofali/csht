@@ -155,7 +155,7 @@ Dear [STAFF],</p></td>
 <td class="t10" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t9" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Welcome to the [SCHOOL] – a place where knowledge, growth, and opportunity converge to create a vibrant academic community! 
+I am thrilled to welcome you to the [SCHOOL] and to your new role as the Head of Department for [DEPT]. Your appointment comes at a significant time for our institution, and we are confident that your leadership will greatly enhance our academic community.
 </tr></table>
 </td></tr><tr><td><div class="t12" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -166,7 +166,7 @@ Welcome to the [SCHOOL] – a place where knowledge, growth, and opportunity con
 <td class="t14" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t13" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-We are delighted to have you join our team. As a valued member of our staff, you play a pivotal role in shaping the future of healthcare professionals. Our institution is committed to academic excellence, innovative research, and the holistic development of our students, and your expertise and dedication are crucial to achieving these goals.
+As the Head of Department, you will be instrumental in guiding the department towards achieving excellence in education, research, and professional practice. Your expertise and vision will be invaluable in fostering a supportive and innovative environment for both faculty and students.
 </tr></table>
 </td></tr><tr><td><div class="t16" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -212,7 +212,7 @@ Should you have any questions or need assistance, please do not hesitate to reac
 <td class="t22" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t21" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Once again, welcome to the [SCHOOL]. We look forward to a productive and fulfilling journey together.
+We are excited about the fresh perspectives and initiatives you will bring to the department. Your leadership is crucial to advancing our mission of academic excellence and innovative healthcare education.
 </p></td>
 </tr></table>
 </td></tr>

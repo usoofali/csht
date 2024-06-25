@@ -1,4 +1,5 @@
-<!-- Subject: Welcome to [SCHOOL] - Staff Edition! -->
+
+<!-- Subject: Welcome to Community School of Health Technology Gusau - Staff Edition! -->
 <!--
 * This email was built using Tabular.
 * For more information, visit https://tabular.email
@@ -131,7 +132,7 @@ h1,img,p{margin:0;Margin:0}img,p{font-family:Lora,Georgia,Times New Roman,Times,
 <td class="t2" style="">
 
 <div style="font-size:0px;">
-<img class="t0" style="display:block;border:0;Margin:0;max-width:100%;" width="75" height="75" alt="" src="[URL][LOGO]"/>
+<img class="t0" style="display:block;border:0;Margin:0;max-width:100%;" width="75" height="75" alt="" src="http://localhost/csht/assets/img/logo.png"/>
 </div>
 </td>
 </tr></table>
@@ -144,7 +145,7 @@ h1,img,p{margin:0;Margin:0}img,p{font-family:Lora,Georgia,Times New Roman,Times,
 <td class="t6" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t5" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Dear [STAFF],</p></td>
+Dear Umar Bello,</p></td>
 </tr></table>
 </td></tr><tr><td><div class="t8" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -155,7 +156,7 @@ Dear [STAFF],</p></td>
 <td class="t10" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t9" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Welcome to the [SCHOOL] – a place where knowledge, growth, and opportunity converge to create a vibrant academic community! 
+I am thrilled to welcome you to the Community School of Health Technology Gusau and to your new role as the Head of Department for PUBLIC HEALTH. Your appointment comes at a significant time for our institution, and we are confident that your leadership will greatly enhance our academic community.
 </tr></table>
 </td></tr><tr><td><div class="t12" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -166,7 +167,7 @@ Welcome to the [SCHOOL] – a place where knowledge, growth, and opportunity con
 <td class="t14" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t13" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-We are delighted to have you join our team. As a valued member of our staff, you play a pivotal role in shaping the future of healthcare professionals. Our institution is committed to academic excellence, innovative research, and the holistic development of our students, and your expertise and dedication are crucial to achieving these goals.
+As the Head of Department, you will be instrumental in guiding the department towards achieving excellence in education, research, and professional practice. Your expertise and vision will be invaluable in fostering a supportive and innovative environment for both faculty and students.
 </tr></table>
 </td></tr><tr><td><div class="t16" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -183,7 +184,7 @@ We are delighted to have you join our team. As a valued member of our staff, you
 <!--[if !mso]>-->
 	<td class="t18" style="width:440px;padding:0 20px 0 20px;">
 		<p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-		Visit our school portal at <a href="[URL]">[SCHOOL]</a>, Log in with your provided username and password. If you haven't received your login credentials, please contact our IT support at [IT_SUPPORT_MAIL]/[PHONE]. </p>
+		Visit our school portal at <a href="http://localhost/csht//pages-login.php">Community School of Health Technology Gusau</a>, Log in with your provided username and password. If you haven't received your login credentials, please contact our IT support at support@csht.com/2348167175973. </p>
 		
 
 </tr>
@@ -212,7 +213,7 @@ Should you have any questions or need assistance, please do not hesitate to reac
 <td class="t22" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t21" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Once again, welcome to the [SCHOOL]. We look forward to a productive and fulfilling journey together.
+We are excited about the fresh perspectives and initiatives you will bring to the department. Your leadership is crucial to advancing our mission of academic excellence and innovative healthcare education.
 </p></td>
 </tr></table>
 </td></tr>
@@ -233,7 +234,7 @@ Warm regards,</p></td>
 <td class="t22" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t21" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-[PROVOST]</p></td>
+Muhammad Sani Abubakar</p></td>
 </tr>
 <tr>
 <!--[if !mso]>-->
@@ -256,7 +257,7 @@ Provost</p></td>
 <!--[if !mso]>-->
 <td class="t26" style="width:258px;padding:0 20px 0 20px;">
 
-<div style="font-size:0px;"><img class="t25" style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width="258" height="73.703125" alt="" src="[URL][SIGNATURE]"/></div></td>
+<div style="font-size:0px;"><img class="t25" style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width="258" height="73.703125" alt="" src="http://localhost/csht/assets/img/signature.png"/></div></td>
 </tr></table>
 </td></tr><tr><td><div class="t28" style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -267,7 +268,7 @@ Provost</p></td>
 <td class="t30" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t29" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:20px;font-weight:400;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#878787;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
-[ABOUT]. [SITE_NAME]. [ADDRESS], [CITY]-[STATE], [COUNTRY]</p></td>
+About Community School Gusau. Community School of Health Technology Gusau. No. 4 Along Gidan Dawa Road, Gusau-Zamfara, Nigeria</p></td>
 </tr></table>
 </td></tr><tr><td><div class="t32" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -278,7 +279,7 @@ Provost</p></td>
 <td class="t34" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t33" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:20px;font-weight:400;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#878787;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
-Copyright © [SITE_NAME], All rights reserved.</p></td>
+Copyright © Community School of Health Technology Gusau, All rights reserved.</p></td>
 </tr></table>
 </td></tr><tr><td><div class="t36" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr></table></td></tr></table></div></body>
 </html>

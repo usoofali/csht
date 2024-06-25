@@ -137,7 +137,7 @@ h2,h3{color:#333;mso-text-raise:2px}img,p{margin:0;Margin:0;font-family:Fira San
 
 <tr>
 <td class="t1" style="">
-<a style="font-size:0px;"><a href="[URL]"><img class="t0" style="display:block;border:0;Margin:0;max-width:100%;" width="60" height="60" alt="" src="./images/logo.png"/></a></div></td>
+<a style="font-size:0px;"><a href="[URL]"><img class="t0" style="display:block;border:0;Margin:0;max-width:100%;" width="60" height="60" alt="" src="[URL][LOGO]"/></a></div></td>
 </tr></table>
 </td></tr><tr><td><div class="t3" style="mso-line-height-rule:exactly;mso-line-height-alt:50px;line-height:50px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 

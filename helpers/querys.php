@@ -312,19 +312,25 @@ function insert_dept($data)
             dept_id,
             name,
             iso,
-            staff_id
+            staff_id,
+            exam_officer,
+            branch_id
         )
         VALUES (
             :dept_id,
             :name,
             :iso,
-            :staff_id
+            :staff_id,
+            :exam_officer,
+            :branch_id
         )');
 
     $db->bind(':dept_id', $data['dept_id']);
     $db->bind(':name', $data['name']);
     $db->bind(':iso', $data['iso']);
     $db->bind(':staff_id', $data['staff_id']);
+    $db->bind(':exam_officer', $data['exam_officer']);
+    $db->bind(':branch_id', $data['branch_id']);
     return $db->cdp_execute();
 }
 
@@ -572,6 +578,28 @@ function insert_invoice($data)
     $db->bind(':dept_id', $data['dept_id']);
     return $db->cdp_execute();
 }
+
+function insert_geofence($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('INSERT INTO geofence
+        (
+            latitude,
+            longitude,
+            dept_id
+        )
+        VALUES (
+            :latitude,
+            :longitude,
+            :dept_id
+        )');
+
+    $db->bind(':latitude', $data['latitude']);
+    $db->bind(':longitude', $data['longitude']);
+    $db->bind(':dept_id', $data['dept_id']);
+    return $db->cdp_execute();
+}
+
 
 function insert_item($data)
 {
@@ -1498,7 +1526,8 @@ function update_dept($data)
     $db->cdp_query('UPDATE dept SET
             name = :name,
             iso = :iso,
-            staff_id = :staff_id
+            staff_id = :staff_id,
+            exam_officer = :exam_officer
         WHERE
             dept_id = :dept_id
         ');
@@ -1506,6 +1535,7 @@ function update_dept($data)
     $db->bind(':name', $data['name']);
     $db->bind(':iso', $data['iso']);
     $db->bind(':staff_id', $data['staff_id']);
+    $db->bind(':exam_officer', $data['exam_officer']);
     $db->bind(':dept_id', $data['dept_id']);
     return $db->cdp_execute();
 }
@@ -1683,6 +1713,24 @@ function update_invoice($data)
     $db->bind(':branch_id', $data['branch_id']);
     $db->bind(':dept_id', $data['dept_id']);
     $db->bind(':invoice_id', $data['invoice_id']);
+    return $db->cdp_execute();
+}
+
+function update_geofence($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE geofence SET
+            latitude = :latitude,
+            longitude = :longitude,
+            dept_id = :dept_id
+        WHERE
+            geofence_id = :geofence_id
+        ');
+
+    $db->bind(':latitude', $data['latitude']);
+    $db->bind(':longitude', $data['longitude']);
+    $db->bind(':dept_id', $data['dept_id']);
+    $db->bind(':geofence_id', $data['geofence_id']);
     return $db->cdp_execute();
 }
 
@@ -2046,6 +2094,17 @@ function update_staff($data)
     $db->bind(':designation', $data['designation']);
     $db->bind(':user_id', $data['user_id']);
 
+    return $db->cdp_execute();
+}
+function update_staff_role($userId, $col, $status)
+{
+
+    $db = new Conexion;
+    $sql = 'UPDATE staff SET ' . $col . ' = "' . $status . '"
+        WHERE
+            user_id = ' . $userId;
+
+    $db->cdp_query($sql);
     return $db->cdp_execute();
 }
 
@@ -3295,6 +3354,15 @@ function deleteSkills($query)
     $db = new Conexion;
     $sql = "DELETE FROM skills WHERE skills_id = " . $query;
     $db->cdp_query($sql);
+    $row = $db->cdp_execute();
+    return $row;
+}
+function deleteGeofence($dept_id)
+{
+    $db = new Conexion;
+    $sql = "DELETE FROM geofence WHERE dept_id = :dept_id";
+    $db->cdp_query($sql);
+    $db->bind(':dept_id', $dept_id);
     $row = $db->cdp_execute();
     return $row;
 }

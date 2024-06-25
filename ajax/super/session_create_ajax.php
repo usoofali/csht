@@ -55,7 +55,7 @@ if (empty($errors)) {
         if (!empty($session)) {
             update_session(array("id" => $session->session_id));
         }
-        $messages['session_success'] = $lang['session_success'];
+
 
         $action_history = array(
             'user_id' => $_SESSION['userid'],
@@ -82,7 +82,7 @@ if (empty($errors)) {
         $notification_id = $db->dbh->lastInsertId();
 
 
-        $users = getUser("branch_id ='" . $_SESSION['branch'] . "'");
+        $users = getUser("branch_id ='" . $_SESSION['branch'] . "' and (status=1 and suspended=0 and graduated=0)");
 
         foreach ($users as $key) {
             $userNotification = array(
@@ -92,6 +92,94 @@ if (empty($errors)) {
             );
             insert_notification_user($userNotification);
         }
+        $messages['session_success'] = $lang['session_success'];
+
+        try {
+            $settings = getSettings("settings_id=1")[0];
+            $name = ucfirst(trim($_POST['lname'])) . ' ' . ucfirst(trim($_POST['fname']));
+            $template = getEmailTemplate("name='welcome-session'")[0];
+            $body = str_replace(
+                array(
+                    '[URL]',
+                    '[STAFF]',
+                    '[IT_SUPPORT_MAIL]',
+                    '[PHONE]',
+                    '[PROVOST]',
+                    '[SIGNATURE]',
+                    '[ABOUT]',
+                    '[ADDRESS]',
+                    '[CITY]',
+                    '[STATE]',
+                    '[SITE_NAME]',
+                    '[LOGO]',
+                    '[SCHOOL]',
+                    '[COUNTRY]'
+                ),
+                array(
+                    $settings->site_url,
+                    $staff,
+                    $settings->support_mail,
+                    $settings->c_phone,
+                    $settings->provost,
+                    $settings->signature,
+                    $settings->about,
+                    $settings->c_address,
+                    $settings->c_city,
+                    $settings->c_state,
+                    $settings->site_name,
+                    $settings->logo,
+                    $settings->site_name,
+                    $settings->c_country,
+                ),
+                $template->body
+            );
+            error_log($body);
+
+            //Create an instance; passing `true` enables exceptions
+            $mail = new PHPMailer(true);
+            //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isMail();                                            //Send using SMTP
+            $mail->Host = $settings->smtp_host;                   //Set the SMTP server to send through
+            $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+            $mail->Username = $settings->info_mail;                     //SMTP username
+            $mail->Password = $settings->smtp_password;                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+            $mail->Port = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            // Recipients
+            $mail->setFrom($settings->operations_mail, $settings->site_name);
+            $to = strtolower(trim($_POST['email']));
+            $mail->addAddress($to, $name);
+            $mail->addReplyTo($settings->site_email, 'Information');
+            $mail->addCC($settings->site_email);
+            $mail->addBCC($settings->info_mail);
+
+            // //Attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = str_replace(array('[SCHOOL]'), array($settings->site_name), $template->subject);
+            $mail->Body = $body;
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->send();
+
+            if ($mail) {
+                $messages['success_message'] = " Email sent successfully.";
+            } else {
+                $messages['fail_message'] = "Failed to send email.";
+            }
+        } catch (Exception $e) {
+            $messages['error'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
 
 
 
@@ -100,83 +188,7 @@ if (empty($errors)) {
         $errors['data_exist'] = $lang['data_exist'];
     }
 
-    // try {
-    //     $settings = getSettings("settings_id=1")[0];
-    //     $session =  ucfirst(trim($_POST['lname'])) .' '. ucfirst(trim($_POST['fname']));
-    //     $template = getEmailTemplate("name='welcome-session'")[0];
-    //     $body = str_replace(
-    //     array(
-    //       '[URL]',
-    //       '[STAFF]',
-    //       '[IT_SUPPORT_MAIL]',
-    //       '[PHONE]',
-    //       '[PROVOST]',
-    //       '[ABOUT]',
-    //       '[ADDRESS]',
-    //       '[CITY]',
-    //       '[STATE]',
-    //       '[SITE_NAME]'
-    //     ),
-    //     array(
-    //         $settings->site_url,
-    //         $session,
-    //         $settings->support_mail,
-    //         $settings->c_phone,
-    //         $settings->provost,
-    //         $settings->about,
-    //         $settings->c_address,
-    //         $settings->c_city,
-    //         $settings->c_state,
-    //         $settings->site_url
-    //     ),
-    //     $template->body
-    //   );
 
-    //  //Create an instance; passing `true` enables exceptions
-    //   $mail = new PHPMailer(true);
-    //   //Server settings
-    //   // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    //   $mail->isMail();                                            //Send using SMTP
-    //   $mail->Host       = $settings->smtp_host;                   //Set the SMTP server to send through
-    //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    //   $mail->Username   = $settings->info_mail;                     //SMTP username
-    //   $mail->Password   = $settings->smtp_password;                               //SMTP password
-    //   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-    //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    //   // Recipients
-    //   $mail->setFrom($settings->operations_mail, $settings->site_name);
-    //   $to = strtolower(trim($_POST['email']));
-    //   $mail->addAddress($to, $session);
-    //   $mail->addReplyTo($settings->site_email, 'Information');
-    //   $mail->addCC($settings->site_email);
-    //   $mail->addBCC($settings->info_mail);
-
-    //   // //Attachments
-    //   // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-    //   //Content
-    //   $mail->isHTML(true);                                  //Set email format to HTML
-    //   $mail->Subject = $template->subject;
-    //   $mail->Body    = $body;
-    //   $mail->SMTPOptions = array(
-    //     'ssl' => array(
-    //         'verify_peer' => false,
-    //         'verify_peer_name' => false,
-    //         'allow_self_signed' => true
-    //     )
-    //   );
-    //   $mail->send();
-
-    //   if ($mail) {
-    //     $messages['success_message'] =  " Email sent successfully.";
-    //   } else {
-    //     $messages['fail_message']  =  "Failed to send email.";
-    //   }
-    // } catch (Exception $e) {
-    //   $messages['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    // //   $errors['error'] =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    // }
 
 
 

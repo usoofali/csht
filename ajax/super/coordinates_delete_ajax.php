@@ -7,28 +7,20 @@ $errors = array();
 
 if (empty($_POST['id']))
   $errors['id'] =  $lang['id_error'];
+
 if (empty($errors)) {
 
   $data = array(
     'id' => $_POST['id']
   );
 
-  try{
-    $delete = deleteSession($data['id']);
-    if ($delete) {
-        $messages["session"] = $lang['data_delete'];
-        
-      } else {
-        $errors[] = $lang['fatal_error'];
-      }
+  $delete = deleteGeofence($data['id']);
+
+  if ($delete) {
+    $messages[] = $lang['data_delete'];
+  } else {
+    $errors[] = $lang['data_fail'];
   }
-  catch(Exception $error){
-    $errors[] = $lang['fatal_error'];
-    
-  }
-  
-  
-  
 }
 
 

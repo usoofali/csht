@@ -155,7 +155,7 @@ Dear [STAFF],</p></td>
 <td class="t10" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t9" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Welcome to the [SCHOOL] – a place where knowledge, growth, and opportunity converge to create a vibrant academic community! 
+As we begin this new academic session, we are excited to welcome both new and returning members of our school community. Our commitment to academic excellence, innovative research, and the holistic development of our students remains steadfast, and we look forward to a year filled with learning, discovery, and achievement.
 </tr></table>
 </td></tr><tr><td><div class="t12" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -166,7 +166,7 @@ Welcome to the [SCHOOL] – a place where knowledge, growth, and opportunity con
 <td class="t14" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t13" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-We are delighted to have you join our team. As a valued member of our staff, you play a pivotal role in shaping the future of healthcare professionals. Our institution is committed to academic excellence, innovative research, and the holistic development of our students, and your expertise and dedication are crucial to achieving these goals.
+Your expertise, passion, and dedication are instrumental in shaping the future of our students. As mentors and educators, you play a crucial role in fostering a supportive and stimulating learning environment. Let’s continue to collaborate, innovate, and inspire each other to achieve our shared goals.
 </tr></table>
 </td></tr><tr><td><div class="t16" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
@@ -177,7 +177,7 @@ We are delighted to have you join our team. As a valued member of our staff, you
 <!--[if !mso]>-->
 	<td class="t18" style="width:440px;padding:0 20px 0 20px;">
 		<p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:34px;font-weight:600;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-		Getting Started:
+		Our Portal:
 </tr>
 <tr>
 <!--[if !mso]>-->
@@ -212,7 +212,7 @@ Should you have any questions or need assistance, please do not hesitate to reac
 <td class="t22" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t21" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Once again, welcome to the [SCHOOL]. We look forward to a productive and fulfilling journey together.
+Once again, welcome to a new academic session at the [SCHOOL]. Together, let's make this year productive, fulfilling, and memorable.
 </p></td>
 </tr></table>
 </td></tr>

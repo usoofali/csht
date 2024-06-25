@@ -12,7 +12,8 @@ $userRoles = array(
   5 => "Cashier",
   6 => "Registrar",
   7 => "Lecturer",
-  8 => "Provost"
+  8 => "Provost",
+  10 => "Invigilator",
 );
 
 $branches = getAllBranch();
