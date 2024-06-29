@@ -28,7 +28,6 @@ $branches = getAllBranch();
 </head>
 
 <body>
-
     <!-- ======= Header ======= -->
     <?php include ('views/inc/topbar.php'); ?>
 
@@ -154,24 +153,18 @@ $branches = getAllBranch();
                         <button type="submit" class="btn btn-danger  col-4"><?php echo $lang['add_staff']; ?></button>
                     </div>
                 </form>
-
             </div>
         </div>
-
-
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php include ('views/inc/footer.php'); ?>
+    <?php include ('views/inc/footer-script.php'); ?>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
     <script src="assets/select2/dist/js/select2.min.js"></script>
     <script src="datajs/staff.js"></script>
-    <?php include ('views/inc/footer-script.php'); ?> <a href="#"
-        class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
 </body>
-
 </html>

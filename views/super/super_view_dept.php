@@ -40,12 +40,12 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Head</th>
-                    <th scope="col">Exam. Officer</th>
-                    <th scope="col">Date Created</th>
-                    <th scope="col">Action</th>
+                    <th scope="col"><?php echo $lang['dept']; ?></th>
+                    <th scope="col"><?php echo $lang['code']; ?></th>
+                    <th scope="col"><?php echo $lang['hod']; ?></th>
+                    <th scope="col"><?php echo $lang['eo']; ?></th>
+                    <th scope="col"><?php echo $lang['date']; ?></th>
+                    <th scope="col"><?php echo $lang['action']; ?></th>
                   </tr>
                 </thead>
               </table>

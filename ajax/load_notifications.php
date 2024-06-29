@@ -1,7 +1,7 @@
 <?php
 
-require_once("../helpers/querys.php");
-require_once("../loader.php");
+require_once ("../helpers/querys.php");
+require_once ("../loader.php");
 $user = new User;
 $db = new Conexion;
 $userData = $user->cdp_getUserData();
@@ -20,9 +20,7 @@ WHERE a.notification_read ='0'
 $sWhere
 
 -- GROUP BY  a.notification_id
-order by b.notification_id desc
-
-";
+order by b.notification_id desc";
 
 $db->cdp_query($sql);
 
@@ -42,7 +40,7 @@ if ($rowCount > 0) {
 
 ?>
 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-<i class="bi bi-bell"></i>
+    <i class="bi bi-bell"></i>
     <span class="badge bg-primary badge-number" id="countNotifications"><?php echo $rowCount; ?></span>
 </a>
 <!-- <ul class="list-style-none"> -->
@@ -77,7 +75,8 @@ if ($rowCount > 0) {
                 ?>
                 <li class="notification-item">
                     <a href="<?php echo $href; ?>" class="message-item">
-                        <h4 class="message-title"><i class="bi bi-info-circle text-info"></i><?php echo $key->action_type; ?></h4>
+                        <h4 class="message-title"><i class="bi bi-info-circle text-info"></i><?php echo $key->action_type; ?>
+                        </h4>
                         <div>
                             <p><?php echo $key->description; ?></p>
                             <p><?php echo $key->created_at; ?></p>
@@ -88,12 +87,12 @@ if ($rowCount > 0) {
                     <hr class="dropdown-divider">
                 </li>
 
-                <?php if ($key->notification_status == 0){
+                <?php if ($key->notification_status == 0) {
                     echo "<script> 
                             $('#chatAudio')[0].play();
                             </script>";
-                    
-                            update_notification_user(array("user_id"=>$_SESSION['userid'], "notification_id"=>$key->notification_id));
+
+                    update_notification_user(array("user_id" => $_SESSION['userid'], "notification_id" => $key->notification_id));
                 } ?>
 
             <?php endforeach; ?>
@@ -116,5 +115,3 @@ if ($rowCount > 0) {
         $('#countNotifications').removeClass('bg-danger');
     }
 </script>
-
-

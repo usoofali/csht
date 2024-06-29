@@ -63,6 +63,7 @@ class User
             $this->userrole = $row->userrole;
             $this->theme = $row->theme;
             $this->avatar = $row->avatar;
+            $this->branch = $row->branch_id;
             $this->user_lang = $row->language;
             return true;
         } else {

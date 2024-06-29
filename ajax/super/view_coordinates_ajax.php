@@ -5,7 +5,11 @@ require_once ('../../helpers/querys.php');
 $user = new User;
 $db = new Conexion;
 
-$sql = "SELECT * FROM geofence WHERE dept_id='".$_POST['id']."'";
+if ($_POST['type'] == "dept"):
+    $sql = "SELECT * FROM geofence WHERE dept_id='" . $_POST['id'] . "'";
+else:
+    $sql = "SELECT * FROM geofence WHERE facility_id='" . $_POST['id'] . "'";
+endif;
 
 $db->cdp_query($sql);
 $db->cdp_execute();
@@ -25,7 +29,7 @@ if ($rowCount > 0) {
     }
     $resultObject = array(
         "data" => $dataArray,
-        "success"=>true
+        "success" => true
     );
     // Convert the result to JSON format
     $resultJSON = json_encode($resultObject);
@@ -34,7 +38,7 @@ if ($rowCount > 0) {
 } else {
     $resultObject = array(
         "data" => $dataArray,
-        "success"=>false
+        "success" => false
     );
     // Convert the result to JSON format
     $resultJSON = json_encode($resultObject);

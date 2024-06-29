@@ -88,9 +88,7 @@ if (isset($_GET['notification_id'])) {
               </div>
             </div>
           </div>
-
         </div>
-
         <div class="col-xl-8">
 
           <div class="card">
@@ -364,11 +362,12 @@ if (isset($_GET['notification_id'])) {
                         <div class="col-md-8 col-lg-9">
                           <div>
                             <?php foreach ($themes as $theme): ?>
+                              <?php $thems = explode(".", $theme)[0]; ?>
                               <div class="form-check mt-2">
                                 <input class="form-check-input" type="radio" id="<?= $theme ?>" name="theme"
                                   value="<?= $theme ?>" <?= $theme == $staff->theme ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="<?= $theme ?>">
-                                  <?= $theme ?>
+                                  <?= $thems ?>
                                 </label>
                               </div>
                             <?php endforeach; ?>

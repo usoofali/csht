@@ -2,4 +2,4 @@ uploads/*
 !uploads/
 
 *.txt
-*.org
+# *.org

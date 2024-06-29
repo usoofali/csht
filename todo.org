@@ -1,0 +1,35 @@
+
+* DONE Session Create [2024-6-20 Thu],
+* TODO Dept Create [2024-6-20 Thu], also consider including google map to show facility 
+* TODO Create email to be sent to all users when new session is created [2024-6-21 Fri]
+* TODO All modules are primitive now... CLOCK: [2024-6-23 Sun 18:57]--[2024-6-23 Sun 18:57]
+* TODO For each dept include grading system [2024-6-23 Sun] # pt - 30 70, A70 # chew - 30 70, 50 - 
+* TODO Include Students Project management module
+* TODO In Credentials include exam number
+* TODO Practicals, postings, attendance and facility  management, also with google map
+* TODO facility geofencing and attendance
+* TODO Active columns: only active entity should be allowed to log into the system.
+* TODO Create Invigilatoion section, with invigilator role 
+* TODO Include part payment module for facilitators
+* TODO Include exam malpractice form
+* TODO Include ID card generating module
+* TODO Include exam card with barcode, an camera scanning barcode
+* TODO Include exam timetable module
+* TODO pdf modules include admission letter, appointment letter, invoice, transfer letter, exam card
+* DONE *dept include coordinates*
+* TODO include practical posting capabilities
+* TODO ID module consider a way of providing template with rectangles for name, adm no etc
+* TODO Make sure to notify all stakeholders for any CRUD operation execpt Reading...
+
+* TODO For branches, also consider including google map to show facility  
+* TODO For invoices include Bank Account Details, create CRUD for accounts
+
+* TODO Overall, consider design for any institution.
+
+
+* TODO Sugesstions
+- for student include type: internal, external, resit
+- for graduation: include Induction, Licence, National Exams in the Invoice
+
+
+

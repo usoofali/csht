@@ -582,21 +582,26 @@ function insert_invoice($data)
 function insert_geofence($data)
 {
     $db = new Conexion;
+    if ($data['type'] == "dept"):
+        $type = "dept_id";
+    else:
+        $type = "facility_id";
+    endif;
     $db->cdp_query('INSERT INTO geofence
         (
             latitude,
             longitude,
-            dept_id
+            ' . $type . '
         )
         VALUES (
             :latitude,
             :longitude,
-            :dept_id
+            :' . $type . '
         )');
 
     $db->bind(':latitude', $data['latitude']);
     $db->bind(':longitude', $data['longitude']);
-    $db->bind(':dept_id', $data['dept_id']);
+    $db->bind(':' . $type, $data['id']);
     return $db->cdp_execute();
 }
 
@@ -1539,7 +1544,6 @@ function update_dept($data)
     $db->bind(':dept_id', $data['dept_id']);
     return $db->cdp_execute();
 }
-
 // Functions for other tables follow the same pattern...
 function update_education($data)
 {
@@ -1814,7 +1818,18 @@ function update_message_read($data)
     $db->bind(':message_id', $data['message_id']);
     return $db->cdp_execute();
 }
+function update_all_message_read($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE message SET
+            message_read = 1
+        WHERE
+            recipient =:recipient
+        ');
 
+    $db->bind(':recipient', $data);
+    return $db->cdp_execute();
+}
 function update_notification($data)
 {
     $db = new Conexion;
@@ -3126,6 +3141,79 @@ function deleteDept($query)
     return $row;
 }
 
+function deleteFacility($query)
+{
+    $db = new Conexion;
+    $sql = "DELETE FROM facility WHERE facility_id = " . $query;
+    $db->cdp_query($sql);
+    $row = $db->cdp_execute();
+    return $row;
+}
+function insert_facility($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('INSERT INTO facility
+        (
+            facility_id,
+            name,
+            state,
+            city,
+            address,
+            level,
+            branch_id
+        )
+        VALUES (
+            :facility_id,
+            :name,
+            :state,
+            :city,
+            :address,
+            :level,
+            :branch_id
+        )');
+
+    $db->bind(':facility_id', $data['facility_id']);
+    $db->bind(':name', $data['name']);
+    $db->bind(':state', $data['state']);
+    $db->bind(':city', $data['city']);
+    $db->bind(':address', $data['address']);
+    $db->bind(':level', $data['level']);
+    $db->bind(':branch_id', $data['branch_id']);
+    return $db->cdp_execute();
+}
+function update_facility($data)
+{
+    $db = new Conexion;
+    $db->cdp_query('UPDATE facility SET
+            name = :name,
+            state = :state,
+            city = :city,
+            level = :level,
+            address = :address
+        WHERE
+            facility_id = :facility_id
+        ');
+
+    $db->bind(':name', $data['name']);
+    $db->bind(':state', $data['state']);
+    $db->bind(':city', $data['city']);
+    $db->bind(':address', $data['address']);
+    $db->bind(':level', $data['level']);
+    $db->bind(':facility_id', $data['facility_id']);
+    return $db->cdp_execute();
+}
+
+function getFacility($where)
+{
+    $db = new Conexion;
+    $sql = "SELECT * FROM facility WHERE " . $where . " ORDER BY facility_id ASC";
+    $db->cdp_query($sql);
+    $db->cdp_execute();
+    $row = $db->cdp_registros();
+
+    return $row;
+}
+
 function deleteStudent($query)
 {
     $db = new Conexion;
@@ -3198,6 +3286,15 @@ function deleteMessage($query)
     return $row;
 }
 
+function deleteAllMessage($query)
+{
+    $db = new Conexion;
+    $sql = "DELETE FROM message WHERE message_read=1 and recipient = " . $query;
+    $db->cdp_query($sql);
+    $row = $db->cdp_execute();
+    return $row;
+}
+
 function deleteCredential($query)
 {
     $db = new Conexion;
@@ -3238,6 +3335,15 @@ function deleteNotificationUser($query)
 {
     $db = new Conexion;
     $sql = "DELETE FROM notification_user WHERE notification_id = " . $query;
+    $db->cdp_query($sql);
+    $row = $db->cdp_execute();
+    return $row;
+}
+
+function deleteAllNotificationUser($query)
+{
+    $db = new Conexion;
+    $sql = "DELETE FROM notification_user WHERE notification_read=1 and user_id = " . $query;
     $db->cdp_query($sql);
     $row = $db->cdp_execute();
     return $row;
@@ -3359,12 +3465,19 @@ function deleteSkills($query)
     $row = $db->cdp_execute();
     return $row;
 }
-function deleteGeofence($dept_id)
+function deleteGeofence($data)
 {
     $db = new Conexion;
-    $sql = "DELETE FROM geofence WHERE dept_id = :dept_id";
-    $db->cdp_query($sql);
-    $db->bind(':dept_id', $dept_id);
+    if ($data['type'] == "dept"):
+        $sql = "DELETE FROM geofence WHERE dept_id = :dept_id";
+        $db->cdp_query($sql);
+        $db->bind(':dept_id', $data['id']);
+    else:
+        $sql = "DELETE FROM geofence WHERE facility_id = :facility_id";
+        $db->cdp_query($sql);
+        $db->bind(':facility_id', $data['id']);
+    endif;
+
     $row = $db->cdp_execute();
     return $row;
 }

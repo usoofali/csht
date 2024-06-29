@@ -25,7 +25,7 @@ function getCoordinates() {
 
 $(document).on("click", ".geo-add", function (event) {
   event.preventDefault(); // Prevent default link behavior
-  var deptId = $(this).data("dept-id");
+  var facilityId = $(this).data("facility-id");
 
   getCoordinates()
     .then((coords) => {
@@ -49,8 +49,8 @@ $(document).on("click", ".geo-add", function (event) {
           type: "POST",
           url: "ajax/super/add_coordinates_ajax.php",
           data: {
-            id: deptId,
-            type: "dept",
+            id: facilityId,
+            type: "facility",
             latitude: result.value[0],
             longitude: result.value[1],
           },
@@ -102,13 +102,13 @@ $(document).on("click", ".geo-add", function (event) {
 
 $(document).on("click", ".geo-view", function (event) {
   event.preventDefault(); // Prevent default link behavior
-  var deptId = $(this).data("dept-id");
+  var facilityId = $(this).data("facility-id");
   $.ajax({
     type: "POST",
     url: "ajax/super/view_coordinates_ajax.php",
     data: {
-      id: deptId,
-      type: "dept",
+      id: facilityId,
+      type: "facility",
     },
     success: function (data) {
       data = JSON.parse(data);
@@ -163,8 +163,8 @@ $(document).on("click", ".geo-view", function (event) {
 $(document).on("click", ".geo-delete", function (event) {
   event.preventDefault(); // Prevent default link behavior
 
-  // Get the dept ID from data attribute
-  var deptId = $(this).data("dept-id");
+  // Get the facility ID from data attribute
+  var facilityId = $(this).data("facility-id");
 
   // Show SweetAlert2 confirmation dialog
   Swal.fire({
@@ -183,8 +183,8 @@ $(document).on("click", ".geo-delete", function (event) {
         type: "POST",
         url: "ajax/super/coordinates_delete_ajax.php",
         data: {
-          id: deptId,
-          type: "dept",
+          id: facilityId,
+          type: "facility",
         },
         success: function (data) {
           data = JSON.parse(data);
@@ -259,9 +259,9 @@ $(document).on("click", ".geo-delete", function (event) {
 // console.log("Point is outside the geofence");
 // }
 
-new DataTable("#depts", {
+new DataTable("#facilitys", {
   ajax: {
-    url: "./ajax/super/dept_view_ajax.php",
+    url: "./ajax/super/facility_view_ajax.php",
     type: "POST",
     dataSrc: "data",
   },

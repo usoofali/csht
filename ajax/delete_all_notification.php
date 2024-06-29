@@ -1,21 +1,14 @@
 <?php
 
-require_once ("../../loader.php");
-require_once ("../../helpers/querys.php");
+require_once ("../loader.php");
+require_once ("../helpers/querys.php");
 
 $errors = array();
-
-if (empty($_POST['id']))
-  $errors['id'] = $lang['id_error'];
+$user = new User;
 
 if (empty($errors)) {
 
-  $data = array(
-    'id' => $_POST['id'],
-    'type' => $_POST['type'],
-  );
-
-  $delete = deleteGeofence($data);
+  $delete = deleteAllNotificationUser($user->uid);
 
   if ($delete) {
     $messages[] = $lang['data_delete'];

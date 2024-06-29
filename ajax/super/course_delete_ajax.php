@@ -7,25 +7,30 @@ $errors = array();
 
 if (empty($_POST['id']))
     $errors['id'] = $lang['id_error'];
-
-
 if (empty($errors)) {
 
     $data = array(
-        'type' => $_POST['type'],
-        'id' => $_POST['id'],
-        'latitude' => $_POST['latitude'],
-        'longitude' => $_POST['longitude']
+        'id' => $_POST['id']
     );
 
-    $insert = insert_geofence($data);
+    try {
+        
+        $delete = deleteCourse($data['id']);
 
-    if ($insert) {
-        $messages["geo"] = $lang['geo_insert'];
+        if ($delete) {
+            $messages["course"] = $lang['data_delete'];
 
-    } else {
-        $errors[] = $lang['geo_fail'];
+        } else {
+            $errors[] = $lang['fatal_error'];
+        }
+
+    } catch (Exception $error) {
+        $errors[] = $lang['fatal_error'];
+
     }
+
+
+
 }
 
 
@@ -43,7 +48,7 @@ if (!empty($errors)) {
 } else {
     echo json_encode([
         'success' => true,
-        'message' => $lang['geo_insert'],
+        'message' => $lang['data_delete'],
     ]);
 }
 

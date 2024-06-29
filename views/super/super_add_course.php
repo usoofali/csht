@@ -31,11 +31,6 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><?php echo $lang['course_form']; ?></h5>
-        <div class="ms-auto">
-          <button type="button" class="btn btn-success create-session" data-bs-toggle="tooltip"
-            data-bs-placement="right" title="Format: title, code, unit, semester, level."><i
-              class="bi bi-check-circle"></i> <?php echo $lang['upload_course']; ?></button>
-        </div>
         <!-- No Labels Form -->
         <form class="row g-3" id="add_data">
 
@@ -80,9 +75,9 @@
 
           <div class="text-end">
             <button type="button" class="btn btn-secondary"
-              onclick="window.location.href='super_view_course.php'"><?php echo $lang['dept_list']; ?></button>
+              onclick="window.location.href='super_view_course.php'"><?php echo $lang['course']; ?>
+              <?php echo $lang['list']; ?></button>
             <button type="submit" class="btn btn-danger col-4"><?php echo $lang['add_course']; ?></button>
-
           </div>
         </form>
       </div>
@@ -99,7 +94,5 @@
   <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
   <script src="assets/select2/dist/js/select2.min.js"></script>
   <script src="datajs/course.js"></script>
-
 </body>
-
 </html>

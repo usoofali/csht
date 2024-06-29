@@ -61,8 +61,7 @@
           </div>
           <div class="text-end">
             <button type="button" class="btn btn-secondary"
-              onclick="window.location.href='super_view_dept.php'">Departments
-              List</button>
+              onclick="window.location.href='super_view_dept.php'"><?php echo $lang['dept']; ?> <?php echo $lang['list']; ?></button>
             <button type="submit" class="btn btn-danger col-4"><?php echo $lang['add_dept']; ?></button>
 
           </div>

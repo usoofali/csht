@@ -3,52 +3,47 @@
 require_once ("../../loader.php");
 require_once ("../../helpers/querys.php");
 
+
 $user = new User;
 $core = new Core;
 $db = new Conexion;
-$sql = "SELECT dept.dept_id FROM user 
-    INNER JOIN staff on user.user_id = staff.user_id 
-    INNER JOIN dept on staff.staff_id = dept.staff_id WHERE user.user_id=" . $user->uid;
-$db->cdp_query($sql);
-$dept = $db->cdp_registro();
 
 $errors = array();
 
-if (empty($_POST['title']))
-    $errors['title'] = $lang['course_title_error'];
+if (empty($_POST['name']))
+    $errors['name'] = $lang['facility_name_error'];
 
-if (empty($_POST['code']))
-    $errors['code'] = $lang['course_code_error'];
+if (empty($_POST['state']))
+    $errors['state'] = $lang['facility_state_error'];
 
-if (empty($_POST['unit']))
-    $errors['unit'] = $lang['course_unit_error'];
+if (empty($_POST['city']))
+    $errors['city'] = $lang['facility_city_error'];
+
+if (empty($_POST['address']))
+    $errors['address'] = $lang['facility_address_error'];
 
 if (empty($_POST['level']))
-    $errors['level'] = $lang['course_level_error'];
-
-if (empty($_POST['semester']))
-    $errors['semester'] = $lang['course_semester_error'];
+    $errors['level'] = $lang['city_level_error'];
 
 if (empty($errors)) {
     $data = array(
-        'course_id' => trim(""),
-        'title' => strtoupper(trim($_POST['title'])),
-        'code' => strtoupper(trim($_POST['code'])),
-        'unit' => strtoupper(trim($_POST['unit'])),
+        'facility_id' => $_POST['facility_id'],
+        'branch_id' => trim($_SESSION['branch']),
+        'name' => strtoupper(trim($_POST['name'])),
+        'state' => strtoupper(trim($_POST['state'])),
+        'city' => strtoupper(trim($_POST['city'])),
+        'address' => strtoupper(trim($_POST['address'])),
         'level' => strtoupper(trim($_POST['level'])),
-        'semester' => strtoupper(trim($_POST['semester'])),
-        'dept_id' => $dept->dept_id
     );
 
-    $insert = insert_course($data);
+    $update = update_facility($data);
 
-    if ($insert) {
-
+    if ($update) {
         $action_history = array(
             'user_id' => $_SESSION['userid'],
             'acted_id' => $_SESSION['userid'],
-            'action_type' => $lang['add_course'],
-            'action' => $lang['add_course_action'],
+            'action_type' => $lang['edited_facility'],
+            'action' => $lang['update_facility_action'],
             'date_history' => date("Y-m-d H:i:s"),
         );
 
@@ -60,8 +55,8 @@ if (empty($errors)) {
         $notification_data = array(
             'user_id' => $_SESSION['userid'],
             'acted_id' => $_SESSION['userid'],
-            'action_type' => $lang['added_course'],
-            'description' => $lang['add_course_notification']
+            'action_type' => $lang['edited_facility'],
+            'description' => $lang['edit_facility_notification']
         );
         // SAVE NOTIFICATION
         insert_notification($notification_data);

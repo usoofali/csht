@@ -35,12 +35,12 @@
                   <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Code</th>
-                        <th scope="col">Students</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
+                        <th scope="col"><?php echo $lang['name']; ?></th>
+                        <th scope="col"><?php echo $lang['code']; ?></th>
+                        <th scope="col"><?php echo $lang['students']; ?></th>
+                        <th scope="col"><?php echo $lang['address']; ?></th>
+                        <th scope="col"><?php echo $lang['status']; ?></th>
+                        <th scope="col"><?php echo $lang['action']; ?></th>
                       </tr>
                   </thead>
                 </table>
