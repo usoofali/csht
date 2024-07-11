@@ -14,9 +14,9 @@ $user = new User;
 $core = new Core;
 $db = new Conexion;
 
+
 $errors = array();
 $messages = array();
-
 $userRoles = array(
     9 => $lang['super'],
     1 => $lang['student'],
@@ -42,8 +42,9 @@ $fields = array(
     'city' => $lang['city'],
     'address' => $lang['address'],
     'branch' => $lang['branch'],
-    'dept_id' => '',
-    'session_id' => '',
+    'dept' => $lang['dept'],
+    'session' => $lang['session'],
+    'status' => $lang['status'],
 );
 
 foreach ($fields as $field => $label) {
@@ -73,17 +74,6 @@ foreach ($fields as $field => $label) {
     }
 }
 
-
-if ($_POST['userlevel'] == "") {
-    $errors['userlevel'] = "Select User Role";
-}
-
-if (!empty($_POST['account_no'])) {
-    if (!preg_match("/^\d{10}$/", $_POST['account_no'])) {
-        $errors["account"] = "Invalid account number";
-    }
-}
-
 // Additional checks for specific inputs
 if (empty($_FILES['avatar']['name'])) {
     $errors['avatar'] = "Avatar cannot be empty";
@@ -91,9 +81,18 @@ if (empty($_FILES['avatar']['name'])) {
 
 // Processing the data if no errors
 if (empty($errors)) {
+    $settings = getSettings("settings_id=1")[0];
+    $dept = getDept("dept_id='" . $_POST['dept'] . "'")[0];
+    $session = getSession("session_id='" . $_POST['session'] . "'")[0];
+    $branch = getBranch("branch_id='" . $_POST['branch'] . "'")[0];
+
+    $branch_role = $core->branch_role_track($_POST['branch']);
+    $role = $core->role_track($_POST['branch'], $_POST['session'], $_POST['dept']);
+
+    $dept_adm = $dept->iso . "/" . $session->year . "/" . $role;
+    $branch_adm = $settings->school_acronym . $branch->code . $branch_role;
 
     if (!empty($_FILES['avatar']['name'])) {
-
         $target_dir = "../../uploads/images/";
         $image_name = time() . "_" . basename($_FILES["avatar"]["name"]);
         $target_file = $target_dir . $image_name;
@@ -122,7 +121,7 @@ if (empty($errors)) {
             'lname' => ucfirst(trim($_POST['lname'])),
             'email' => strtolower(trim($_POST['email'])),
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // You should hash the password before storing it
-            'username' => trim($_POST['username']),
+            'username' => $branch_adm,
             'avatar' => $avatar,
             'phone' => $_POST['phone'],
             'gender' => $_POST['gender'],
@@ -131,35 +130,37 @@ if (empty($errors)) {
             'state'=> $_POST['state'],
             'newsletter' => isset($_POST['newsletter']) ? $_POST['newsletter'] : 0,
             'active' => isset($_POST['active']) ? $_POST['active'] : 0,
-            'userlevel' => $_POST['userlevel'],
+            'userlevel' => 1,
             'branch' => $_POST['branch'],
-            'status'=> null,
+            'status'=> $_POST['status'],
             'notes' => $_POST['notes']
         );
     }
 
-    // Assuming insert_staff is a function to insert staff data
+    // Assuming insert_student is a function to insert student data
     $insert = insert_user($data);
     $user_id = '';
 
     if ($insert) {
         $user_id = getUser("email='" . strtolower(trim($_POST['email'])) . "'")[0]->user_id;
-        if (isset($_POST['account_bank']) and isset($_POST['account_name']) and isset($_POST['account_number'])) {
-            $data = array(
-                'account_bank' => trim($_POST['account_bank']),
-                'account_name' => strtoupper(trim($_POST['account_name'])),
-                'account_number' => trim($_POST['account_number']),
-                'user_id' => $user_id,
-                'designation' => $userRoles[1],
-            );
-            $insert = insert_staff($data);
-        }
+        $data = array(
+            'dept_adm' => $dept_adm,
+            'role'=> $role,
+            'branch_role'=> $branch_role,
+            'type' => "internal",
+            'dept_id' => trim($_POST['dept']),
+            'session_id' => trim($_POST['session']),
+            'branch_id' => trim($_POST['branch']),
+            'user_id' => $user_id,
+        );
+
+        $insert = insert_student($data);
 
         $action_history = array(
             'user_id' => $_SESSION['userid'],
             'acted_id' => $user_id,
-            'action_type' => $lang['add_staff'],
-            'action' => $lang['add_staff_action'],
+            'action_type' => $lang['add_student'],
+            'action' => $lang['add_student_action'],
             'date_history' => date("Y-m-d H:i:s"),
         );
 
@@ -171,8 +172,8 @@ if (empty($errors)) {
         $notification_data = array(
             'user_id' => $_SESSION['userid'],
             'acted_id' => $user_id,
-            'action_type' => $lang['add_staff'],
-            'description' => $lang['add_staff_notification']
+            'action_type' => $lang['add_student'],
+            'description' => $lang['add_student_notification']
         );
         // SAVE NOTIFICATION
         insert_notification($notification_data);
@@ -180,9 +181,9 @@ if (empty($errors)) {
         $notification_id = $db->dbh->lastInsertId();
 
 
-        $staff = getUser("userlevel != 1 and branch_id ='" . $_POST['branch'] . "'");
+        $student = getUser("userlevel != 1 and branch_id ='" . $_POST['branch'] . "'");
 
-        foreach ($staff as $key) {
+        foreach ($student as $key) {
             $userNotification = array(
                 "notification_id" => $notification_id,
                 "branch_id" => $key->branch_id,
@@ -193,13 +194,13 @@ if (empty($errors)) {
 
         $messages['data_success'] = $lang['data_success'];
         try {
-            $settings = getSettings("settings_id=1")[0];
-            $staff = ucfirst(trim($_POST['lname'])) . ' ' . ucfirst(trim($_POST['fname']));
-            $template = getEmailTemplate("name='welcome-staff'")[0];
+
+            $student = ucfirst(trim($_POST['lname'])) . ' ' . ucfirst(trim($_POST['fname']));
+            $template = getEmailTemplate("name='welcome-student'")[0];
             $body = str_replace(
                 array(
                     '[URL]',
-                    '[STAFF]',
+                    '[STUDENT]',
                     '[IT_SUPPORT_MAIL]',
                     '[PHONE]',
                     '[PROVOST]',
@@ -215,7 +216,7 @@ if (empty($errors)) {
                 ),
                 array(
                     $settings->site_url,
-                    $staff,
+                    $student,
                     $settings->support_mail,
                     $settings->c_phone,
                     $settings->provost,
@@ -247,7 +248,7 @@ if (empty($errors)) {
             // Recipients
             $mail->setFrom($settings->operations_mail, $settings->site_name);
             $to = strtolower(trim($_POST['email']));
-            $mail->addAddress($to, $staff);
+            $mail->addAddress($to, $student);
             $mail->addReplyTo($settings->site_email, 'Information');
             $mail->addCC($settings->site_email);
             $mail->addBCC($settings->info_mail);

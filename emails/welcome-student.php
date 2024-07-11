@@ -1,5 +1,4 @@
 <!-- Subject: Welcome to [SCHOOL]
-<!--
 * This email was built using Tabular.
 * For more information, visit https://tabular.email
 -->
@@ -11,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!--[if !mso]>-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link href="[FAVICON]" rel="icon">
 <!--<![endif]-->
 <meta name="x-apple-disable-message-reformatting" content="" />
 <meta content="target-densitydpi=device-dpi" name="viewport" />
@@ -135,7 +135,7 @@ h1,img,p{margin:0;Margin:0}img,p{font-family:Lora,Georgia,Times New Roman,Times,
 </div>
 </td>
 </tr></table>
-</td></tr><tr><td><div class="t4" style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
+</td></tr><tr><td><div class="t4" style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;/div></td></tr><tr><td>
 <!--[if !mso]>-->
 <table class="t7" role="presentation" cellpadding="0" cellspacing="0" style="Margin-left:auto;Margin-right:auto;">
 
@@ -144,8 +144,10 @@ h1,img,p{margin:0;Margin:0}img,p{font-family:Lora,Georgia,Times New Roman,Times,
 <td class="t6" style="width:440px;padding:0 20px 0 20px;">
 
 <p class="t5" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-Dear [STUDENT],</p></td>
-</tr></table>
+Congratulations!!! [STUDENT],</p></td>
+</tr>
+
+</table>
 </td></tr><tr><td><div class="t8" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <!--[if !mso]>-->
 <table class="t11" role="presentation" cellpadding="0" cellspacing="0" style="Margin-left:auto;Margin-right:auto;">

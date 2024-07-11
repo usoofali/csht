@@ -1112,28 +1112,35 @@ function insert_student($data)
     $db = new Conexion;
     $db->cdp_query('INSERT INTO student
         (
-            student_id,
-            adm,
+            dept_adm,
             role,
+            branch_role,
+            type,
             dept_id,
             session_id,
-            user_id
+            user_id,
+            branch_id
         )
         VALUES (
-            :student_id,
-            :adm,
+            :dept_adm,
             :role,
+            :branch_role,
+            :type,
             :dept_id,
             :session_id,
-            :user_id
+            :user_id,
+            :branch_id
         )');
-
-    $db->bind(':student_id', $data['student_id']);
-    $db->bind(':adm', $data['adm']);
+        
+    $db->bind(':dept_adm', $data['dept_adm']);
     $db->bind(':role', $data['role']);
+    $db->bind(':branch_role', $data['branch_role']);
+    $db->bind(':type', $data['type']);
     $db->bind(':dept_id', $data['dept_id']);
     $db->bind(':session_id', $data['session_id']);
     $db->bind(':user_id', $data['user_id']);
+    $db->bind(':branch_id', $data['branch_id']);
+
     return $db->cdp_execute();
 }
 
@@ -1247,7 +1254,10 @@ function insert_user($data)
             active,
             branch_id,
             address,
-            theme
+            state,
+            city,
+            theme,
+            status
         )
         VALUES (
             :email,
@@ -1264,7 +1274,10 @@ function insert_user($data)
             :active,
             :branch_id,
             :address,
-            :theme
+            :state,
+            :city,
+            :theme,
+            :status
         )');
 
     $db->bind(':email', $data['email']);
@@ -1281,8 +1294,15 @@ function insert_user($data)
     $db->bind(':active', $data['active']);
     $db->bind(':branch_id', $data['branch']);
     $db->bind(':address', $data['address']);
+    $db->bind(':state', $data['state']);
+    $db->bind(':city', $data['city']);
     $db->bind(':theme', "style.css");
-    return $db->cdp_execute();
+    $db->bind("status", $data["status"]);
+
+    $result = $db->cdp_execute();
+    error_log($db->cdp_error_info()[2]);
+    return $result;
+
 }
 
 function insert_user_action_history($datos)

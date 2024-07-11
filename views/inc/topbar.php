@@ -3,18 +3,18 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="<?php echo $core->logo; ?>" alt="">
-        <span class="d-none d-lg-block"><?php echo $lang['site']; ?></span>
+        <span class="d-none d-lg-block"><?php echo $core->site_acronyme; ?></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
+        <!-- <li class="nav-item d-block d-lg-none">
           <a class="nav-link nav-icon search-bar-toggle " href="#">
             <i class="bi bi-search"></i>
           </a>
-        </li><!-- End Search Icon-->
+        </li>End Search Icon -->
 
         <li class="nav-item dropdown">
 
@@ -44,7 +44,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span><?php echo $lang['my_profile']; ?></span>
               </a>
             </li>
             <li>
@@ -53,7 +53,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-logout.php">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span><?php echo $lang['signout']; ?></span>
               </a>
             </li>
 

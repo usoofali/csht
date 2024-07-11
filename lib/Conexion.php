@@ -58,9 +58,20 @@ class Conexion
     //Ejecuta la consulta
     public function cdp_execute()
     {   
-        return $this->stmt->execute();
+        $result = $this->stmt->execute();
+        error_log($this->cdp_error_info()[2]);
+        return $result;
     }
 
+    public function cdp_error()
+    {   
+        return $this->stmt->errorCode();
+    }
+
+    public function cdp_error_info()
+    {   
+        return $this->stmt->errorInfo();
+    }
 
     //Obtener los datos de la consulta
     public function cdp_registros()

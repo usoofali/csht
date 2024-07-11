@@ -1,8 +1,8 @@
 <?php
 
 $lang = array(
-
-	"" => "",
+	"signin" => "Sign In",
+	"signout" => "Sign Out",
 	"email" => "Email",
 	"fname" => "First Name",
 	"lname" => "Last Name",
@@ -47,11 +47,11 @@ $lang = array(
 	"newpassword" => "New Password",
 	"renewpassword" => "Re-enter New Password",
 	"update_password" => "Update Password",
-	"site" => "CSHT GUSAU",
 	"super" => "Super Admin",
 	"admin" => "Admin Officer",
 	"cashier" => "Cashier",
 	"registrar" => "Registrar",
+	"affiliate"=> "Affiliate",
 	"lecturer" => "Lecturer",
 	"provost" => "Provost",
 	"invigilator" => "Invigilator",
@@ -172,14 +172,28 @@ $lang = array(
 
 	//student tables
 	"student" => "Student",
+	"student_form" => "Student Form",
 	"students" => "Students",
 	"add_student" => "Create Student",
-	"view_student" => "View Studentes",
+	"view_student" => "View Students",
 	"edit_student" => "Update Student",
 	"delete_student" => "Delete Student",
+	"update_student" => "Update Student",
+	"added_student" => "Student Created",
+	"edited_student" => "Student Updated",
+	"deletedd_student" => "Student Updated",
+	"updated_student" => "Student Updated",
+	"add_student_action" => "You added a Student",
+	"update_student_action" => "A Student has been updated",
+	"add_student_notification" => "A new student has been added. Please review it.",
+	"update_student_notification" => "A student updated. Please review it.",
+	"updated_student_action" => "A Student has been updated",
+	"added_student_notification" => "A new student has been created. Please review it.",
+	"updated_student_notification" => "A student has been updated. Please review it.",
 
 	//staff tables
 	"staff" => "Staff",
+	"staff_form" => "Staff Form",
 	"add_staff" => "Create Staff",
 	"edit_staff" => "Update Staff",
 	"delete_staff" => "Delete Staff",
@@ -196,7 +210,6 @@ $lang = array(
 	"added_staff_notification" => "A new staff has been created. Please review it.",
 	"updated_staff_notification" => "A staff has been updated. Please review it.",
 	"view_staff" => "View Staff",
-	"staff_form" => "Staff Form",
 	"bank_details" => "Bank Details",
 
 	//invoice tables
@@ -261,7 +274,7 @@ $lang = array(
 	"to" => "To",
 	"from" => "From",
 	"notification" => "Notification",
-
+	"my_profile"=> "My Profile",
 	"administrator" => "Administrator",
 	"color" => "Color",
 	"choose_color" => "Choose your color",
@@ -269,7 +282,23 @@ $lang = array(
 	"primary" => "Primary",
 	"secondary" => "Secondary",
 	"tertiary" => "Tertiary",
+	"fresh" => "Fresh",
+	"returning" => "Returning",
+	"retrainee" => "Retrainee",
+	"resiting" => "Resiting",
+	"graduate" => "Graduate",
+	"graduated" => "Graduated",
 	"" => "",
-
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	
 
 );

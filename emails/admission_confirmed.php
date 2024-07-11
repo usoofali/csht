@@ -176,6 +176,8 @@ We are pleased to inform you that your enrollment process has been completed. Be
 <!--[if !mso]>-->
 <td class="t18" style="width:440px;padding:0 20px 0 20px;">
 
+<p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
+Your hard work and dedication have paid off, and we are excited to welcome you to our institution. Here, you will have the opportunity to learn, grow, and excel in your chosen field of study.</tr>
 </table>
 </td></tr><tr><td><div class="t20" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <table class="t19" role="presentation" cellpadding="0" cellspacing="0" style="Margin-left:auto;Margin-right:auto;">
@@ -188,24 +190,7 @@ We are pleased to inform you that your enrollment process has been completed. Be
 Please find attached your admission letter and other necessary documents. Kindly review the information carefully and follow the instructions provided to complete your enrollment process.</tr>
 </table>
 </td></tr><tr><td><div class="t20" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
-<table class="t19" role="presentation" cellpadding="0" cellspacing="0" style="Margin-left:auto;Margin-right:auto;">
 
-<tr>
-<!--[if !mso]>-->
-	<td class="t18" style="width:440px;padding:0 20px 0 20px;">
-		<p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:34px;font-weight:600;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-		Getting Started:
-</tr>
-<tr>
-<!--[if !mso]>-->
-	<td class="t18" style="width:440px;padding:0 20px 0 20px;">
-		<p class="t17" style="margin:0;Margin:0;font-family:Lora,Georgia,Times New Roman,Times,serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:4px;">
-		Visit our school portal at <a href="[URL]">[SCHOOL]</a>, Log in with your provided username and password. If you haven't received your login credentials, please contact our IT support at [IT_SUPPORT_MAIL]/[PHONE]. </p>
-		
-
-</tr>
-
-</table>
 </td></tr><tr><td><div class="t20" style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 
 <!--[if !mso]>-->

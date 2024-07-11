@@ -7,13 +7,14 @@ $userRoles = array(
     9 => $lang['super'],
     1 => $lang['student'],
     2 => $lang['admin'],
-    3 => $lang['exam'],
-    4 => $lang['hod'],
+    // 3 => $lang['exam'],
+    // 4 => $lang['hod'],
     5 => $lang['cashier'],
     6 => $lang['registrar'],
     7 => $lang['lecturer'],
     8 => $lang['provost'],
     10 => $lang['invigilator'],
+    11 => $lang['affiliate'],
 );
 
 $branches = getAllBranch();
@@ -68,7 +69,7 @@ $branches = getAllBranch();
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="username" name="username"
-                            placeholder="<?php echo $lang['username']; ?>">
+                            placeholder="<?php echo $lang['username']; ?>" readonly>
                     </div>
 
                     <div class="col-md-6">
@@ -87,14 +88,20 @@ $branches = getAllBranch();
                             <option value="Female"><?php echo $lang['female']; ?></option>
                         </select>
                     </div>
-
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="state" name="state"
-                            placeholder="<?php echo $lang['select']; ?> <?php echo $lang['state']; ?>">
+                        <select class="form-control" id="state" name="state">
+                            <option value=""><?php echo $lang['select']; ?> <?php echo $lang['state']; ?></option>
+                            <?php $states = getAllState(); ?>
+                            <?php foreach ($states as $state) { ?>
+                                <option value="<?php echo $state->state_id; ?>">
+                                    <?php echo $state->name; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="city" name="city"
-                            placeholder="<?php echo $lang['select']; ?> <?php echo $lang['lga']; ?>">
+                        <select class="form-control" id="city" name="city">
+                        </select>
                     </div>
                     <div class="col-md-12">
                         <input type="address" class="form-control" id="address" name="address"
@@ -167,4 +174,5 @@ $branches = getAllBranch();
     <script src="assets/select2/dist/js/select2.min.js"></script>
     <script src="datajs/staff.js"></script>
 </body>
+
 </html>

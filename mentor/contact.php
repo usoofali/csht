@@ -1,3 +1,7 @@
+<?php 
+$core = new Core();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,7 +110,7 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form action="/opt/lampp/htdocs/csht/mentor/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">

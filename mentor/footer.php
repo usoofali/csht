@@ -9,15 +9,15 @@
           <div class="footer-contact pt-3">
             <p><?php echo $core->c_address ?>,</p>
             <p><?php echo $core->c_city ?>, <?php echo $core->c_postal ?></p>
-            <p>Zamfara State, Nigeria.</p>
+            <p>Zamfara State, <?php echo $core->c_country ?>.</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+<?php echo $core->c_phone ?></span></p>
-            <p><strong>Email:</strong> <span><?php echo $core->site_email ?></span></p>
+            <p><strong><?php echo $lang['email']; ?>:</strong> <span><?php echo $core->site_email ?></span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="<?php echo $core->twitter; ?>"><i class="bi bi-twitter-x"></i></a>
+            <a href="<?php echo $core->facebook; ?>"><i class="bi bi-facebook"></i></a>
+            <a href="<?php echo $core->instagram; ?>"><i class="bi bi-instagram"></i></a>
+            <a href="<?php echo $core->linkedin; ?>"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
@@ -40,6 +40,11 @@
             <li><a href="course-details.php?id=mlt">Medical Lab. Technician</a></li>
             <li><a href="course-details.php?id=him">Health Information Management</a></li>
             <li><a href="course-details.php?id=ph">Public Health</a></li>
+            <li><a href="course-details.php?id=chew">Community Health Extension Worker</a></li>
+            <li><a href="course-details.php?id=pt">Pharmacy Technician</a></li>
+            <li><a href="course-details.php?id=mlt">Medical Lab. Technician</a></li>
+            <li><a href="course-details.php?id=him">Health Information Management</a></li>
+            <li><a href="course-details.php?id=ph">Public Health</a></li></div>
           </ul>
         </div>
 

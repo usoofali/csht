@@ -144,103 +144,6 @@ $("#edit_data").on('submit', function (event) {
 });
 
 
-$(document).ready(function() {
-   
-    // Add event listener to the input field
-    function handleStateSelection(){
-
-        $.ajax({
-            url: 'ajax/select2_states.php',
-            success: function (data) {
-                const stateOptions = JSON.parse(data);
-                const selectOptions = Object.keys(stateOptions).map(stateID => `<option value="${stateID}">${stateOptions[stateID].text}</option>`).join('');
-                // Create SweetAlert2 dialog with a select input
-                Swal.fire({
-                    title: 'Select State',
-                    html: `<select id="swal-state" class="form-select">${selectOptions}</select>`,
-                    showCancelButton: true,
-                    confirmButtonText: 'Ok',
-                    cancelButtonText: 'Cancel',
-                    showLoaderOnConfirm: true,
-                    width: 340,
-                    preConfirm: () => {
-                        // Retrieve selected state ID
-                        const selectedStateID = $('#swal-state').val();
-                        // Set the selected state ID to the hidden input field
-                        $('#state').val(stateOptions[selectedStateID].text);
-                        // Return the selected state ID
-                        return selectedStateID;
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: 'ajax/select2_cities.php',
-                            data: {'id': result.value},
-                            success: function (data) {
-                                const lgaOptions = JSON.parse(data);
-                                const selectOptions = Object.keys(lgaOptions).map(stateID => `<option value="${stateID}">${lgaOptions[stateID].text}</option>`).join('');
-                                Swal.fire({
-                                    title: 'Select LGA',
-                                    html: `<select id="swal-lga" class="form-select">${selectOptions}</select>`,
-                                    showCancelButton: true,
-                                    confirmButtonText: 'Ok',
-                                    cancelButtonText: 'Cancel',
-                                    showLoaderOnConfirm: true,
-                                    width: 340,
-                                    preConfirm: () => {
-                                        // Retrieve selected state ID
-                                        const selectedLgaID = $('#swal-lga').val();
-                                        // Set the selected state ID to the hidden input field
-                                        $('#city').val(lgaOptions[selectedLgaID].text);
-                                        // Return the selected state ID
-                                        return selectedLgaID;
-                                    }
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        Swal.fire({
-                                            input: "text",
-                                            inputLabel: "Enter Street Address",
-                                            inputPlaceholder: "Type your address here...",
-                                            showCancelButton: true,
-                                            width: 340,
-                                          }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    $('#address').val(result.value);
-                                                }else if (result.isDismissed) {
-                                                    $('#state').val("");
-                                                    $('#city').val("");
-                                                    $('#address').val("");
-                                                }
-                                          });
-
-                                    }else if (result.isDismissed) {
-                                        $('#state').val("");
-                                        $('#city').val("");
-                                        $('#address').val("");
-                                    }
-                                });
-                                
-                            },
-                        });
-                      } else if (result.isDismissed) {
-                        $('#state_id').val("");
-                        $('#state').val("");
-                        $('#city_id').val("");
-                        $('#city').val("");
-                        $('#address').val("");
-                      }
-                });    
-            }
-        })
-
-    };
-
-    $('#state').on('click select keyup', handleStateSelection);
-
-   
-});
-
-
 function validateFileSize() {
     // Get the file input element
     var input = document.getElementById('avatar');
@@ -279,8 +182,6 @@ function validateFileSize() {
     }
 }
 
-
-
 $("#account_bank").select2({
         theme:"classic",
         ajax: {
@@ -304,3 +205,42 @@ $("#account_bank").select2({
         allowClear: true
 });
 
+$("#email").on('change', function (event) {
+
+    var email = document.getElementById("email").value;
+    if(email.search("@") == -1){
+        document.getElementById("username").value = email;   
+    }else{
+        document.getElementById("username").value = email.slice(0,email.indexOf("@"));
+    }
+
+});
+
+$("#state").on("change", function (event) {
+    var state = document.getElementById("state").value;
+    var city = document.getElementById("city");
+  
+    $.ajax({
+      type: "POST",
+      url: "ajax/select2_cities.php",
+      data: { id: state },
+      success: function (data) {
+        data = JSON.parse(data);
+        city.innerHTML = '';
+  
+        var option = document.createElement("option");
+        option.value = ""; // Set the value attribute of <option> to the key
+        option.textContent = "Select LGA";
+        city.appendChild(option); // Append <option> to the <select> element
+        for (var key in data) {
+          if (data.hasOwnProperty(key)) {
+            var option = document.createElement("option");
+            option.value = key; // Set the value attribute of <option> to the key
+            option.textContent = data[key]; // Set the text content of <option> to the value
+            city.appendChild(option); // Append <option> to the <select> element
+          }
+        }
+      },
+    });
+  });
+  

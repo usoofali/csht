@@ -1,11 +1,10 @@
 <?php
 
-require_once("../loader.php");
+require_once ("../loader.php");
 
 $db = new Conexion;
 
-$state = cdp_sanitize($_REQUEST['id']);
-
+$state = $_REQUEST['id'];
 
 $list = array();
 $data = [];
@@ -18,7 +17,7 @@ $datas = $db->cdp_registros();
 
 foreach ($datas as $key) {
 
-    $data[$key->city_id] = array('text' => $key->name);
+    $data[$key->city_id] =  $key->name;
 }
 
 echo json_encode($data);

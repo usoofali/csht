@@ -14,7 +14,7 @@
 * TODO Include exam malpractice form
 * TODO Include ID card generating module
 * TODO Include exam card with barcode, an camera scanning barcode
-* TODO Include exam timetable module
+* TODO Include exam timetable module$user->branch
 * TODO pdf modules include admission letter, appointment letter, invoice, transfer letter, exam card
 * DONE *dept include coordinates*
 * TODO include practical posting capabilities
@@ -28,8 +28,11 @@
 
 
 * TODO Sugesstions
+- CBT module, tbl_questions: question, optA,optB,optC,optD, correctOpt, course_id, type(exam,test),key
 - for student include type: internal, external, resit
 - for graduation: include Induction, Licence, National Exams in the Invoice
+- practical posting let student select facility
+- consider affiliating student to be registered by their staff, affiliation institution table
 
 
 

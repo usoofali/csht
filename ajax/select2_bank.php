@@ -4,7 +4,7 @@ require_once("../helpers/querys.php");
 
 $db = new Conexion;
 
-$search = cdp_sanitize($_REQUEST['q']);
+$search = $_REQUEST['q'];
 
 $list = array();
 $data = [];

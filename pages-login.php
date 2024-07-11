@@ -52,7 +52,6 @@ if (isset($_POST['login'])) {
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
-  * Template Name: <?php echo $lang['site']; ?>
   * Template URL: https://csht.com/nice-admin-bootstrap-admin-html-template/
   * Updated: Apr 7 2024 with Bootstrap v5.3.3
   * Author: CSHT.com
@@ -73,11 +72,10 @@ if (isset($_POST['login'])) {
               <div class="d-flex justify-content-center py-4">
                 <a href="index.php" class="logo d-flex align-items-center w-auto">
                   <img src="<?php echo $core->logo; ?>" alt="">
-                  <!-- <span class="d-none d-lg-block"><?php echo $lang['site']; ?></span> -->
                 </a>
                 <a href="index.php" class="logo d-flex align-items-center w-auto">
                   <!-- <img src="<?php echo $core->logo; ?>" alt=""> -->
-                  <span class="d-none d-lg-block"><?php echo $lang['site']; ?></span>
+                  <span class="d-none d-lg-block"><?php echo $core->site_acronyme; ?></span>
                 </a>
               </div><!-- End Logo -->
 
